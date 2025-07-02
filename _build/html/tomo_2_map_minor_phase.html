@@ -1,0 +1,1775 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tomographic mapping notebook, with optimizations for minor phases &#8212; Tutorial for scanning 3DXRD</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"01173816d90643cf970c31875555784d": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_d5fd354f31bd4c6492dbf1fc77f2b7e4"}}, "081c6841788f449aa1f8b2b5ae334539": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "0adc13bf3bc74e66ab9a9a35bc1cc243": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_57780861832e40c8993eafa855c85704", "style": "IPY_MODEL_b7c5804c90e9426483da80aa1d5dea14", "value": "\u2007513/513\u2007[00:00&lt;00:00,\u20072489.75it/s]"}}, "199d2471debf464f86e2fb8d8b06f690": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "1ce6cd6762c14604b305956bc580156e": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "1e13f8a429ee4e0ab3b0ff92087b7090": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_e482927f43774470b08c8b687049a79b", "IPY_MODEL_01173816d90643cf970c31875555784d"], "layout": "IPY_MODEL_6ed7986c2a7e45c9947495e65dacd5b6"}}, "1eb84d4a191745dbab881d8f29e1c3ec": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "2532d730d3194b3db0786e9d915ed8c1": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "2b17855af64242f0919a726b680ec76a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "2ed7b96a105d409a8c2037cf0b037f56": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "302b6972d2914f2fa810d173fa534886": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "366a60a2bef24abd92dcaa1b4f82e400": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_4b950f5fa1014f58ae59ea8c74deae6a", "IPY_MODEL_7da15d18e8674094af42b417a731d0fb", "IPY_MODEL_6700a7769c124fec9bd088c1f7974f8a"], "layout": "IPY_MODEL_2b17855af64242f0919a726b680ec76a"}}, "4063ecb899134c17b295444f30a1371d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_855581b84011403b8d2b2b09c70b56e1", "style": "IPY_MODEL_d511bb2a1d8e41a68ff8c03cfb6fdf63", "value": "100%"}}, "43975d3741b346bd831cd56519b2c4de": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "460034715894495193c99ec8a88dc877": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "46205e78003a4b249d678a9bc275f356": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "4a858105bf434c548ac169f5697faa7f": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "4b950f5fa1014f58ae59ea8c74deae6a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_6656c736de9641eaad818e8f8d569451", "style": "IPY_MODEL_a5347518793c4e69908bfbcdbc3bf1be", "value": "100%"}}, "4cfba1787100461b98723717f2b0985c": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "4e9b1c70aed14866b1e3a8bfd170a706": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8ff3dc297f3243d9a9c566837ac4c956", "max": 513, "style": "IPY_MODEL_e3dbc291de3345859e50544dce72d014", "value": 513}}, "546a821eabe44fadb3782dabc736a487": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_de20b74a628f4547b3ec64b927129094", "IPY_MODEL_dd7f51d44dc24e468e4a937a7574c13a", "IPY_MODEL_e185676353df4166866eb6cffc5f0f8c"], "layout": "IPY_MODEL_b09c3e8ce2634700a6bc38ef916a4182"}}, "57780861832e40c8993eafa855c85704": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "607366553ed4448096094d11ecf7cf85": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6656c736de9641eaad818e8f8d569451": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6700a7769c124fec9bd088c1f7974f8a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_6a940ad908344bbfb5141b48e8a30faf", "style": "IPY_MODEL_081c6841788f449aa1f8b2b5ae334539", "value": "\u2007513/513\u2007[00:19&lt;00:00,\u200750.99it/s]"}}, "6a940ad908344bbfb5141b48e8a30faf": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6d07a72549cc4a45945bff9d5f12a2e7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_7e9fe8fd55614b9ebdfb867b0463ac0a", "style": "IPY_MODEL_ec04f8e5bcd94ce09b110233bda1ea65", "value": "\u2007513/513\u2007[00:44&lt;00:00,\u200711.59it/s]"}}, "6e4737ac5f9347ed9b29955154e4443c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_ef8d0d0409e84fc0a0d0b7f4d63662f3", "IPY_MODEL_4e9b1c70aed14866b1e3a8bfd170a706", "IPY_MODEL_0adc13bf3bc74e66ab9a9a35bc1cc243"], "layout": "IPY_MODEL_d4d098efaab6472fb779504209e3509a"}}, "6ed7986c2a7e45c9947495e65dacd5b6": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6fede7d94b754cd8b48ed9bd0a0d7b1b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8dbd4f01b4564485980dd69cb10c19d2", "max": 513, "style": "IPY_MODEL_b024b19edcfb493eaa30cc15e3ec3b4f", "value": 513}}, "7c306bb954cd453ab77b53bc8c98bb94": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "7da15d18e8674094af42b417a731d0fb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_460034715894495193c99ec8a88dc877", "max": 513, "style": "IPY_MODEL_f09ea97aee224ba7a35adb1a0003f0ef", "value": 513}}, "7e9fe8fd55614b9ebdfb867b0463ac0a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "7f055a61b3184ee08792be7dffabfb5f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_d00487d6c9eb49bd8db8d3084ac1af35", "IPY_MODEL_c58fca74a1c841a7808b078dd12a40e8", "IPY_MODEL_f06058aa154548859c0a922825774fd8"], "layout": "IPY_MODEL_8bc9e945dfc0472f9853232a7e320a79"}}, "855581b84011403b8d2b2b09c70b56e1": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "8bc9e945dfc0472f9853232a7e320a79": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "8dbd4f01b4564485980dd69cb10c19d2": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "8ff3dc297f3243d9a9c566837ac4c956": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "9c57e25716254eb48320949b2cbf2b9e": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "a5347518793c4e69908bfbcdbc3bf1be": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "b024b19edcfb493eaa30cc15e3ec3b4f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "b09c3e8ce2634700a6bc38ef916a4182": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "b6dc70f142304e36beb5f8619e8a0dcb": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "b7c5804c90e9426483da80aa1d5dea14": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "bddee445e4e5414a99cc56871f860cf1": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "c46cf22e92c64f9bae0c4aad218769a4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "c58fca74a1c841a7808b078dd12a40e8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_4a858105bf434c548ac169f5697faa7f", "max": 513, "style": "IPY_MODEL_46205e78003a4b249d678a9bc275f356", "value": 513}}, "c68d541545174dbd9db73aa1a50d9238": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "IntSliderModel", "state": {"behavior": "drag-tap", "description": "Grain:", "layout": "IPY_MODEL_4cfba1787100461b98723717f2b0985c", "max": 512, "style": "IPY_MODEL_43975d3741b346bd831cd56519b2c4de"}}, "cee1d959b5ea4fa1b2d4cb75e37366a3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "cfd0de01f08d448696efa4107d33f669": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "d00487d6c9eb49bd8db8d3084ac1af35": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_302b6972d2914f2fa810d173fa534886", "style": "IPY_MODEL_cfd0de01f08d448696efa4107d33f669", "value": "100%"}}, "d045972602c44e6ab3f0dfd1a7f9d49e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_4063ecb899134c17b295444f30a1371d", "IPY_MODEL_6fede7d94b754cd8b48ed9bd0a0d7b1b", "IPY_MODEL_6d07a72549cc4a45945bff9d5f12a2e7"], "layout": "IPY_MODEL_9c57e25716254eb48320949b2cbf2b9e"}}, "d211de735b214f6898bdde6037325999": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "d4d098efaab6472fb779504209e3509a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "d511bb2a1d8e41a68ff8c03cfb6fdf63": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "d5fd354f31bd4c6492dbf1fc77f2b7e4": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "d60f12fdf4204fb397cfab501b92f9f5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_c68d541545174dbd9db73aa1a50d9238", "IPY_MODEL_e18f96e19dc84acd9a0371e53ec7cfb4"], "layout": "IPY_MODEL_1ce6cd6762c14604b305956bc580156e"}}, "dd7f51d44dc24e468e4a937a7574c13a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_bddee445e4e5414a99cc56871f860cf1", "max": 513, "style": "IPY_MODEL_cee1d959b5ea4fa1b2d4cb75e37366a3", "value": 513}}, "dda5cb3d4cd9401d9f7359372e0197a5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "ddbadd2df36a459aa326fba0f2e08dae": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "de20b74a628f4547b3ec64b927129094": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_199d2471debf464f86e2fb8d8b06f690", "style": "IPY_MODEL_ddbadd2df36a459aa326fba0f2e08dae", "value": "100%"}}, "e185676353df4166866eb6cffc5f0f8c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_7c306bb954cd453ab77b53bc8c98bb94", "style": "IPY_MODEL_c46cf22e92c64f9bae0c4aad218769a4", "value": "\u2007513/513\u2007[00:09&lt;00:00,\u200755.65it/s]"}}, "e18f96e19dc84acd9a0371e53ec7cfb4": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b6dc70f142304e36beb5f8619e8a0dcb"}}, "e3dbc291de3345859e50544dce72d014": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "e482927f43774470b08c8b687049a79b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "IntSliderModel", "state": {"behavior": "drag-tap", "description": "Grain:", "layout": "IPY_MODEL_2532d730d3194b3db0786e9d915ed8c1", "max": 512, "style": "IPY_MODEL_1eb84d4a191745dbab881d8f29e1c3ec"}}, "ec04f8e5bcd94ce09b110233bda1ea65": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "ef8d0d0409e84fc0a0d0b7f4d63662f3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_607366553ed4448096094d11ecf7cf85", "style": "IPY_MODEL_dda5cb3d4cd9401d9f7359372e0197a5", "value": "100%"}}, "f06058aa154548859c0a922825774fd8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_d211de735b214f6898bdde6037325999", "style": "IPY_MODEL_2ed7b96a105d409a8c2037cf0b037f56", "value": "\u2007513/513\u2007[00:00&lt;00:00,\u2007729.22it/s]"}}, "f09ea97aee224ba7a35adb1a0003f0ef": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tomo_2_map_minor_phase';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tomographic refinement notebook" href="tomo_3_refinement_minor_phase.html" />
+    <link rel="prev" title="Tomographic indexing notebook, with optimizations for minor phases" href="tomo_1_index_minor_phase.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Tutorial for scanning 3DXRD - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Tutorial for scanning 3DXRD - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">Dataset creation, segmentation and peak labelling</a></li>
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_Major_Phase.html">Tomographic reconstruction (major phase)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomographic indexing notebook</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomographic mapping notebook</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomographic refinement notebook</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">Point-by-point refined map visualisation notebook</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Tomographic_reconstruction_minor_phase.html">Tomographic reconstruction (minor phase)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index_minor_phase.html">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement_minor_phase.html">Tomographic refinement notebook</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">Point-by-point refined map visualisation notebook</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">Notebook to combine TensorMap phases</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftomo_2_map_minor_phase.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tomo_2_map_minor_phase.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tomographic mapping notebook, with optimizations for minor phases</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peaks">Peaks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grains">Grains</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-phase-grains">Major phase grains</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#filtration">Filtration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-remove-major-phase-peaks">(optional) remove major phase peaks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-intensity">Filter by intensity</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-assignment">Peak assignment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grain-position-refinement">Grain position refinement</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grain-sinogram-generation">Grain sinogram generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grain-shape-reconstruction">Grain shape reconstruction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iradon">iradon</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-grain-as-example">First grain as example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruct-all-grains">Reconstruct all grains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-outputs">View outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assemble-tensormap">Assemble TensorMap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#astra">ASTRA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">View outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Assemble TensorMap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-reconstruction-quality">Filter by reconstruction quality</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assemble-cleaned-tensormap">Assemble cleaned TensorMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-fit-grain-positions-from-reconstructions">Re-fit grain positions from reconstructions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export">Export</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Grains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensormap">TensorMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xdmf">XDMF</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tomographic-mapping-notebook-with-optimizations-for-minor-phases">
+<h1>Tomographic mapping notebook, with optimizations for minor phases<a class="headerlink" href="#tomographic-mapping-notebook-with-optimizations-for-minor-phases" title="Permalink to this heading">#</a></h1>
+<p><strong>Written by Haixing Fang, Jon Wright and James Ball</strong><br />
+<strong>Date: 21/02/2025</strong></p>
+<p>This notebook will try to reconstruct grain shapes and positions from the grain orientations you found in the first notebook.<br />
+This notebook is optimised for weak and noisy minor phase data.<br />
+This notebook (and the tomo route in general) works best for low levels of deformation.<br />
+If it doesn’t seem to work well, try the point-by-point route instead!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OPENBLAS_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;MKL_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/data/id11/nanoscope/install_ImageD11_from_git.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>The notebooks are written with all the parameters in the first cell.
+We will see how to tune these parameters along the notebook.</p>
+<p>For now, change :</p>
+<ol class="arabic simple">
+<li><p>the dataset name (<code class="docutils literal notranslate"><span class="pre">dset_path</span></code>)</p></li>
+<li><p>the major phase name (<code class="docutils literal notranslate"><span class="pre">major_phase_strs</span></code>), this is a list [] because you may want to filter the major phase and other minor phases you already indexed</p></li>
+<li><p>the minor phase name (<code class="docutils literal notranslate"><span class="pre">minor_phase_str</span></code>)</p></li>
+</ol>
+<div class="cell tag_parameters tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this cell is tagged with &#39;parameters&#39;</span>
+<span class="c1"># to view the tag, select the cell, then find the settings gear icon (right or left sidebar) and look for Cell Tags</span>
+
+<span class="c1"># python environment stuff</span>
+<span class="n">PYTHONPATH</span> <span class="o">=</span> <span class="n">setup_ImageD11_from_git</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Tutorial&#39;</span><span class="p">,</span> <span class="s1">&#39;SCRIPTS&#39;</span><span class="p">),</span> <span class="s1">&#39;ImageD11&#39;</span> <span class="p">)</span><span class="c1"># ( os.path.join( os.environ[&#39;HOME&#39;],&#39;Code&#39;), &#39;ImageD11_git&#39; )</span>
+
+<span class="c1"># dataset file to import</span>
+<span class="n">dset_path</span> <span class="o">=</span> <span class="s1">&#39;../FeAu_0p5_tR_nscope/FeAu_0p5_tR_nscope_top_200um/FeAu_0p5_tR_nscope_top_200um_dataset.h5&#39;</span>
+
+<span class="c1"># phase names to look at</span>
+<span class="n">major_phase_strs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fe&#39;</span><span class="p">]</span>
+<span class="n">minor_phase_str</span> <span class="o">=</span> <span class="s1">&#39;Au&#39;</span>
+
+<span class="c1"># peak filtration parameters</span>
+<span class="c1"># whether to filter out major phase peaks before trying to build sinograms</span>
+<span class="n">remove_major_phase_peaks</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">major_phase_cf_dstol</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">minor_phase_cf_frac</span> <span class="o">=</span> <span class="mf">0.9975</span>
+<span class="n">minor_phase_cf_dstol</span> <span class="o">=</span> <span class="mf">0.005</span>
+
+<span class="c1"># If the sinograms are only half-sinograms (we scanned dty across half the sample rather than the full sample), set the below to true:</span>
+<span class="n">is_half_scan</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># If we did halfmask, choose the radius to mask in the centre of the reconstruction (normally hot pixels)</span>
+<span class="n">halfmask_radius</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="c1"># assign peaks to the grains with hkl tolerance peak_assign_tol</span>
+<span class="n">peak_assign_tol</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># tolerance for building sinograms from assigned peaks</span>
+<span class="n">hkltol</span> <span class="o">=</span> <span class="mf">0.25</span>
+
+<span class="c1"># We can optionally correct each row of the sinogram by the ring current of that rotation</span>
+<span class="c1"># This helps remove artifacts in the reconstruction</span>
+<span class="n">correct_sinos_with_ring_current</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">first_tmap_cutoff_level</span> <span class="o">=</span> <span class="mf">0.4</span>
+
+<span class="c1"># how many iterations for Astra reconstruction?</span>
+<span class="n">niter</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">second_tmap_cutoff_level</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># filter out grains with more than grain_too_many_px pixels in the label map</span>
+<span class="c1"># this normally indicates a dodgy reconstruction for this grain</span>
+<span class="c1"># only really applies if the grains are very small!</span>
+<span class="n">grain_too_many_px</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Setting path via: 
+sys.path.insert(0, /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11 )
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Running from: /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/__init__.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.notebook</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11</span><span class="w"> </span><span class="kn">import</span> <span class="n">cImageD11</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.peakselect</span><span class="w"> </span><span class="kn">import</span> <span class="n">select_ring_peaks_by_intensity</span><span class="p">,</span> <span class="n">remove_peaks_from_phases</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.sinograms.dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.sinograms.sinogram</span><span class="w"> </span><span class="kn">import</span> <span class="n">GrainSinogram</span><span class="p">,</span> <span class="n">write_h5</span><span class="p">,</span> <span class="n">read_h5</span><span class="p">,</span> <span class="n">get_2d_peaks_from_4d_peaks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.sinograms.tensor_map</span><span class="w"> </span><span class="kn">import</span> <span class="n">TensorMap</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.nbGui.nb_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">utils</span>
+
+<span class="c1"># %matplotlib ipympl</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="load-data">
+<h1>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>The dataset</p></li>
+<li><p>The phases</p></li>
+<li><p>The segmented peaks</p></li>
+<li><p>The indexed grains</p></li>
+</ol>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ImageD11</span><span class="o">.</span><span class="n">sinograms</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dataroot = &quot;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/RAW_DATA&quot;
+analysisroot = &quot;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/PROCESSED_DATA/20250626_LJ&quot;
+sample = &quot;FeAu_0p5_tR_nscope&quot;
+dset = &quot;top_200um&quot;
+shape = ( 275, 1448)
+# scans 275 from 1.1 to 275.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="phases">
+<h2>Phases<a class="headerlink" href="#phases" title="Permalink to this heading">#</a></h2>
+<p>If the parameter file was a json, we can access the unit cells via <code class="docutils literal notranslate"><span class="pre">ds.phases.unitcells</span></code></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">phases</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_phases_from_disk</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">phases</span><span class="o">.</span><span class="n">unitcells</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Au&#39;: Au | [ 4.005  4.005  4.005 90.    90.    90.   ] | 225,
+ &#39;Fe&#39;: Fe | [ 2.8694  2.8694  2.8694 90.     90.     90.    ] | 229,
+ &#39;B2&#39;: B2 | [ 3.8867  3.8867  3.8867 90.     90.     90.    ] | 221,
+ &#39;CeO2&#39;: CeO2 | [ 5.41143  5.41143  5.41143 90.      90.      90.     ] | F}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to decide which are our ‘major’ phases, which we will remove from our peaks before indexing.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">major_phase_unitcells</span> <span class="o">=</span> <span class="p">[</span><span class="n">ds</span><span class="o">.</span><span class="n">phases</span><span class="o">.</span><span class="n">unitcells</span><span class="p">[</span><span class="n">mps</span><span class="p">]</span> <span class="k">for</span> <span class="n">mps</span> <span class="ow">in</span> <span class="n">major_phase_strs</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">major_phase_unitcells</span><span class="p">)</span>
+<span class="n">minor_phase_unitcell</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">phases</span><span class="o">.</span><span class="n">unitcells</span><span class="p">[</span><span class="s1">&#39;Au&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minor_phase_unitcell</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fe | [ 2.8694  2.8694  2.8694 90.     90.     90.    ] | 229
+Au | [ 4.005  4.005  4.005 90.    90.    90.   ] | 225
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="peaks">
+<h1>Peaks<a class="headerlink" href="#peaks" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cf_4d</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_cf_4d</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">update_colfile_pars</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">)</span>  <span class="c1"># computes geometry, needed for filtration</span>
+<span class="k">for</span> <span class="n">major_phase_unitcell</span> <span class="ow">in</span> <span class="n">major_phase_unitcells</span><span class="p">:</span>
+    <span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">makerings</span><span class="p">(</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">makerings</span><span class="p">(</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading existing colfile from /data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/PROCESSED_DATA/20250626_LJ/FeAu_0p5_tR_nscope/FeAu_0p5_tR_nscope_top_200um/FeAu_0p5_tR_nscope_top_200um_peaks_4d.h5
+Reading your columnfile in hdf format
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="grains">
+<h1>Grains<a class="headerlink" href="#grains" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grains</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_grains_from_disk</span><span class="p">(</span><span class="n">minor_phase_str</span><span class="p">)</span>
+<span class="n">grainsinos</span> <span class="o">=</span> <span class="p">[</span><span class="n">GrainSinogram</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">ds</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">]</span>
+<span class="n">utils</span><span class="o">.</span><span class="n">get_rgbs_for_grains</span><span class="p">(</span><span class="n">grains</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">grains</span><span class="p">)</span><span class="si">}</span><span class="s2"> grains imported&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding reference unitcells from self.phases
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>513 grains imported
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">plot_all_ipfs</span><span class="p">(</span><span class="n">grains</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/57ca30f87336d2bc1d46a52ff656745852a3dbc8c93f9bc21f0ece4df0e67962.png" src="_images/57ca30f87336d2bc1d46a52ff656745852a3dbc8c93f9bc21f0ece4df0e67962.png" />
+<img alt="_images/52085da614a5f7a4490a8c89d5aedb5aab28f69b0c48afcab4c488bfe225f43e.png" src="_images/52085da614a5f7a4490a8c89d5aedb5aab28f69b0c48afcab4c488bfe225f43e.png" />
+<img alt="_images/4fee5dff9eab4aa794e699476670664b8d03b97323af9d3a4bf13f1166918ca2.png" src="_images/4fee5dff9eab4aa794e699476670664b8d03b97323af9d3a4bf13f1166918ca2.png" />
+</div>
+</div>
+<section id="major-phase-grains">
+<h2>Major phase grains<a class="headerlink" href="#major-phase-grains" title="Permalink to this heading">#</a></h2>
+<p>You inherit the reconstruction parameters you used for your major phase grains :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">whole_sample_mask</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shift</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pad</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y0</span></code></p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">major_phase_grainsinos</span> <span class="o">=</span> <span class="n">read_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">major_phase_strs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># pick one of the major phases</span>
+<span class="n">whole_sample_mask</span> <span class="o">=</span> <span class="n">major_phase_grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recon_mask</span>
+<span class="n">shift</span> <span class="o">=</span> <span class="n">major_phase_grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recon_shift</span>
+<span class="n">pad</span> <span class="o">=</span> <span class="n">major_phase_grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recon_pad</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">major_phase_grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recon_y0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">pad</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">is_half_scan</span><span class="p">:</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">correct_bins_for_half_scan</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.489598935092346 -15.979204998876389 18
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="filtration">
+<h1>Filtration<a class="headerlink" href="#filtration" title="Permalink to this heading">#</a></h1>
+<section id="optional-remove-major-phase-peaks">
+<h2>(optional) remove major phase peaks<a class="headerlink" href="#optional-remove-major-phase-peaks" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cf_4d</span></code>: all the peaks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">major_phase_cf_dstol</span></code>: it is the tolerance around the predicted reflection from the majorphase where the peaks will be removed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">major_phase_unitcells</span></code>: unitcell of the major phase</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">remove_major_phase_peaks</span><span class="p">:</span>
+    <span class="n">cf_4d</span> <span class="o">=</span> <span class="n">remove_peaks_from_phases</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">,</span> <span class="n">major_phase_cf_dstol</span><span class="p">,</span> <span class="n">major_phase_unitcells</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="filter-by-intensity">
+<h2>Filter by intensity<a class="headerlink" href="#filter-by-intensity" title="Permalink to this heading">#</a></h2>
+<p>Now we are filtering our peaks (<code class="docutils literal notranslate"><span class="pre">cf_4d</span></code>) to select only the strongest ones .
+This time, we don’t clip via <code class="docutils literal notranslate"><span class="pre">dsmax</span></code>, because we need the higher-angle projections for complete sinograms.</p>
+<ol class="arabic simple">
+<li><p>We first filter the peaks in <span class="math notranslate nohighlight">\(d^{*}\)</span> to keep only those close to the predicted peaks from the unit cell.</p></li>
+<li><p>We then sort our peaks by intensity, and take a certain intensity-weighted fraction of them.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">minor_phase_cf_dstol</span></code>: The tolerance in <span class="math notranslate nohighlight">\(d^{*}\)</span> between a peak and a predicted reflection.
+<code class="docutils literal notranslate"><span class="pre">minor_phase_cf_frac</span></code>: The intensity fraction: <code class="docutils literal notranslate"><span class="pre">frac=0.9</span></code> keeps 90% of the peak intensity. We recommend that you choose a value close to the ‘elbow’ of the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cf_strong</span> <span class="o">=</span> <span class="n">select_ring_peaks_by_intensity</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">minor_phase_cf_frac</span><span class="p">,</span> <span class="n">dstol</span><span class="o">=</span><span class="n">minor_phase_cf_dstol</span><span class="p">,</span> <span class="n">dsmax</span><span class="o">=</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">ucell</span><span class="o">=</span><span class="n">minor_phase_unitcell</span><span class="p">,</span> <span class="n">doplot</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/036badbabf6fe4912d0149ca18020a785a394e8c576a78848ec4a857d4e27471.png" src="_images/036badbabf6fe4912d0149ca18020a785a394e8c576a78848ec4a857d4e27471.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filtered 148446 peaks from 513331
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">makerings</span><span class="p">(</span><span class="n">cf_strong</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">skip</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># we can skip peaks to speed up plotting if needed</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span> <span class="n">cf_4d</span><span class="o">.</span><span class="n">sum_intensity</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cf_4d&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cf_strong</span><span class="o">.</span><span class="n">ds</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span> <span class="n">cf_strong</span><span class="o">.</span><span class="n">sum_intensity</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;minor phase&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mf">3e3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">inc</span><span class="p">,</span> <span class="n">major_phase_unitcell</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">major_phase_unitcells</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">,</span> <span class="mf">3e3</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">**</span><span class="n">inc</span><span class="p">),</span> <span class="mf">3e3</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">inc</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">color_sequences</span><span class="p">[</span><span class="s1">&#39;tab20&#39;</span><span class="p">][</span><span class="n">inc</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$d^{*}~(\AA^{-1})$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Intensity&#39;</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Peak filtration&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ebd544fc74e95ab02494f209dabae3ed3b50defbdfda8e7ff4525ddb8fb8ff63.png" src="_images/ebd544fc74e95ab02494f209dabae3ed3b50defbdfda8e7ff4525ddb8fb8ff63.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="peak-assignment">
+<h1>Peak assignment<a class="headerlink" href="#peak-assignment" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">assign_peaks_to_grains</span><span class="p">(</span><span class="n">grains</span><span class="p">,</span> <span class="n">cf_strong</span><span class="p">,</span> <span class="n">peak_assign_tol</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">grain_label</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grains</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">gid</span> <span class="o">=</span> <span class="n">grain_label</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">npks_4d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cf_strong</span><span class="o">.</span><span class="n">grain_id</span> <span class="o">==</span> <span class="n">grain_label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scoring and assigning 513 grains
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0e49e0669ae541bcbba667ca395567d9"}</script></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">plot_grain_sinograms</span><span class="p">(</span><span class="n">grains</span><span class="p">,</span> <span class="n">cf_strong</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grains</span><span class="p">),</span> <span class="mi">25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/17be94cb91f94dcfa0bbbe7a0f0eb82cabad2c2c9eb78db55dc1e094ff194fdd.png" src="_images/17be94cb91f94dcfa0bbbe7a0f0eb82cabad2c2c9eb78db55dc1e094ff194fdd.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="grain-position-refinement">
+<h1>Grain position refinement<a class="headerlink" href="#grain-position-refinement" title="Permalink to this heading">#</a></h1>
+<p>After filtering out peaks from the major phase, you can visualize the position of all indexed grains. Since a lot of grains were indexed in the previous step, some of the grains may be “false grain” (if they appear outside of the sample for instance).
+All these “false grains” will be filtered out during the mapping process (it is also possible to come back to the previous step and improve the indexing).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">grain_label</span><span class="p">,</span> <span class="n">gs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">):</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">update_lab_position_from_peaks</span><span class="p">(</span><span class="n">cf_strong</span><span class="p">,</span> <span class="n">grain_label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.style.use(&#39;dark_background&#39;)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">translation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">translation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">npks_4d</span><span class="o">/</span><span class="mi">10</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">rgb_z</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;IPF color Z&#39;</span><span class="p">,</span>  <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">rgb_y</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;IPF color Y&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="o">.</span><span class="n">rgb_x</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;IPF color X&#39;</span><span class="p">,</span>  <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of 4D peaks&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s2">&quot;&lt;- Sample y (transverse)&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s2">&quot;Sample x (beam) -&gt;&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Grain centre-of-mass positions from 4D peaks&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/83eeb522c9fb648937ddca287651db5cf868fc81857c2656522cc5bbf9ba70df.png" src="_images/83eeb522c9fb648937ddca287651db5cf868fc81857c2656522cc5bbf9ba70df.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="grain-sinogram-generation">
+<h1>Grain sinogram generation<a class="headerlink" href="#grain-sinogram-generation" title="Permalink to this heading">#</a></h1>
+<p>The goal is to reconstruct a sinogram for each grain</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gord</span><span class="p">,</span> <span class="n">inds</span> <span class="o">=</span> <span class="n">get_2d_peaks_from_4d_peaks</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">,</span> <span class="n">cf_strong</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">grain_label</span><span class="p">,</span> <span class="n">gs</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">)):</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">prepare_peaks_from_4d</span><span class="p">(</span><span class="n">cf_strong</span><span class="p">,</span> <span class="n">gord</span><span class="p">,</span> <span class="n">inds</span><span class="p">,</span> <span class="n">grain_label</span><span class="p">,</span> <span class="n">hkltol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b39708433ad8412a8e957b4143590b22"}</script></div>
+</div>
+<p>^ if you segmented frelon data for scanning, the above cell won’t work, because we don’t have a 2d peaks table
+you can instead try the below to prepare the peaks from the 2D peaks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cf_2d = ds.get_cf_2d_from_disk()</span>
+<span class="c1"># ds.update_colfile_pars(cf_2d, phase_str)</span>
+<span class="c1"># for grain_label, gs in enumerate(tqdm(grainsinos)):</span>
+<span class="c1">#     gs.prepare_peaks_from_2d(cf_2d, grain_label, hkltol)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">):</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">build_sinogram</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "37345c731d59419fab2029a44638eff6"}</script></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># optionally correct the halfmask:</span>
+<span class="k">if</span> <span class="n">is_half_scan</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">:</span>
+        <span class="n">gs</span><span class="o">.</span><span class="n">correct_halfmask</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">gs</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Projection angle ($\degree$)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Grain sinogram&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/6430d57e39426c6ed0c4f3f0acdcce98e3e46b65995c02b7e588024245a6d7b2.png" src="_images/6430d57e39426c6ed0c4f3f0acdcce98e3e46b65995c02b7e588024245a6d7b2.png" />
+</div>
+</div>
+<p>We can optionally correct each row of the sinogram by the ring current of that rotation
+This helps remove artifacts in the reconstruction</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">correct_sinos_with_ring_current</span><span class="p">:</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">get_ring_current_per_scan</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">:</span>
+        <span class="n">gs</span><span class="o">.</span><span class="n">correct_ring_current</span><span class="p">(</span><span class="n">is_half_scan</span><span class="o">=</span><span class="n">is_half_scan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">gs</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Projection angle ($\degree$)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Grain sinogram&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/465f5b20187850be374b37f9a24782506be83f2915bbe9ae661bf5aa6159b15c.png" src="_images/465f5b20187850be374b37f9a24782506be83f2915bbe9ae661bf5aa6159b15c.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="grain-shape-reconstruction">
+<h1>Grain shape reconstruction<a class="headerlink" href="#grain-shape-reconstruction" title="Permalink to this heading">#</a></h1>
+<p>By back projecting a sinogram, it is possible to reconstruct the 2D shape of each grain (same principle as tomographic imaging). There are different method to do a back projection, the fastest is using <em>iradon</em> from the scipy library.</p>
+<section id="iradon">
+<h2>iradon<a class="headerlink" href="#iradon" title="Permalink to this heading">#</a></h2>
+<section id="first-grain-as-example">
+<h3>First grain as example<a class="headerlink" href="#first-grain-as-example" title="Permalink to this heading">#</a></h3>
+<p>Check that the reconstruction is satisfying for the first grain.
+There should be a sinogram on the left picture and a reconstruction of the grain on the right. Sometimes the first grain is a very small one, it’s okay, streaks might appear on the reconstruction. They will disappear when we will use Astra to reconstruct the grains.</p>
+<p>A sign of a bad reconstruction is a completely dark picture. In that case, you might want to check that the mask is correctly loaded (and that it’s boolean, True/False, and not 0 and 1):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">whole_sample_mask</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span><span class="o">.</span><span class="n">update_recon_parameters</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">whole_sample_mask</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">recon</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">is_half_scan</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">mask_central_zingers</span><span class="p">(</span><span class="s2">&quot;iradon&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">halfmask_radius</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">gs</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Projection angle ($\degree$)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Grain sinogram&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gs</span><span class="o">.</span><span class="n">recons</span><span class="p">[</span><span class="s2">&quot;iradon&quot;</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;ID11 iradon&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&lt;-- Sample Y&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Sample X&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/836cf3f9ce12a4372276f9e873bc8bf43f37f689688046548b8a04bd0df3dfad.png" src="_images/836cf3f9ce12a4372276f9e873bc8bf43f37f689688046548b8a04bd0df3dfad.png" />
+</div>
+</div>
+<p>For every grain, we update the reconstruction parameters :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pad</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shift</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">whole_sample_mask</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y0</span></code></p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">update_recon_parameters</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">whole_sample_mask</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="reconstruct-all-grains">
+<h3>Reconstruct all grains<a class="headerlink" href="#reconstruct-all-grains" title="Permalink to this heading">#</a></h3>
+<p>In parallel, on as many cpu you have available.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nthreads</span> <span class="o">=</span> <span class="n">cImageD11</span><span class="o">.</span><span class="n">cores_available</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nthreads</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">GrainSinogram</span><span class="o">.</span><span class="n">recon</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">)):</span>
+        <span class="k">pass</span>
+<span class="k">if</span> <span class="n">is_half_scan</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">:</span>
+        <span class="n">gs</span><span class="o">.</span><span class="n">mask_central_zingers</span><span class="p">(</span><span class="s2">&quot;iradon&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">halfmask_radius</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2a431ec78a42444d8ad74bf34e59bee4"}</script></div>
+</div>
+</section>
+<section id="view-outputs">
+<h3>View outputs<a class="headerlink" href="#view-outputs" title="Permalink to this heading">#</a></h3>
+<p>You can slide the widget to go through all the reconstructed grains.
+If some grains look messy (lots of streak), it’s okay, the next reconstruction method Astra will give better results.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">update_frame</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">rec</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">recons</span><span class="p">[</span><span class="s2">&quot;iradon&quot;</span><span class="p">])</span>
+    <span class="n">sin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Grain &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">frame_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">grains</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Grain:&#39;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">rec</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recons</span><span class="p">[</span><span class="s2">&quot;iradon&quot;</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+<span class="n">sin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&lt;-- Sample Y&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Sample X&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;iradon Reconstruction&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Projection angle ($\degree$)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Grain sinogram&#39;</span><span class="p">)</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">update_frame</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">frame_slider</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/f07dbe9e172ba29760663d3adbe9cee05618783d8bbf3424748f8684b644f72b.png" src="_images/f07dbe9e172ba29760663d3adbe9cee05618783d8bbf3424748f8684b644f72b.png" />
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "66b6d4374d2a4a59950e66cb20674b7a"}</script></div>
+</div>
+</section>
+<section id="assemble-tensormap">
+<h3>Assemble TensorMap<a class="headerlink" href="#assemble-tensormap" title="Permalink to this heading">#</a></h3>
+<p>All the grains are assembled together on a single map. It will probably look very messy for small grains.
+You can tune the cutoff parameter for a better visualisation : <code class="docutils literal notranslate"><span class="pre">first_tmap_cutoff_level</span></code></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_map</span> <span class="o">=</span> <span class="n">TensorMap</span><span class="o">.</span><span class="n">from_grainsinos</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">,</span> <span class="n">cutoff_level</span><span class="o">=</span><span class="n">first_tmap_cutoff_level</span><span class="p">)</span>
+<span class="n">tensor_map</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;ipf_z&quot;</span><span class="p">)</span>
+<span class="n">tensor_map</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;labels&quot;</span><span class="p">)</span>
+<span class="n">tensor_map</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;intensity&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/c44bc153bd69a0a29faab88604a755fe2d82bc4500700fe6e7ff896b53b7b3b3.png" src="_images/c44bc153bd69a0a29faab88604a755fe2d82bc4500700fe6e7ff896b53b7b3b3.png" />
+<img alt="_images/b7381abe5c8c9f61d42f3b00d2a3da3a65196e12307a0d76f7fb776e763a5b51.png" src="_images/b7381abe5c8c9f61d42f3b00d2a3da3a65196e12307a0d76f7fb776e763a5b51.png" />
+<img alt="_images/72ad0dbd3f051d7902dff0c8feee6a68b1b353d835221ccbbafbbae9c4162cc8.png" src="_images/72ad0dbd3f051d7902dff0c8feee6a68b1b353d835221ccbbafbbae9c4162cc8.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="astra">
+<h2>ASTRA<a class="headerlink" href="#astra" title="Permalink to this heading">#</a></h2>
+<p>We can clean up these reconstructions using an MLEM iterative recon.<br />
+We will carry this out using ASTRA (<a class="reference external" href="https://astra-toolbox.com/">https://astra-toolbox.com/</a>) on the GPU on the SLURM cluster.<br />
+The ASTRA EM_CUDA method will be used.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">update_recon_parameters</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">whole_sample_mask</span><span class="p">,</span> <span class="n">niter</span><span class="o">=</span><span class="n">niter</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">)</span>
+<span class="n">write_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">,</span> <span class="n">overwrite_grains</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group_name</span><span class="o">=</span><span class="n">minor_phase_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Submit the batch file to the ESRF cluster</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bash_script_path</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">prepare_astra_bash</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">PYTHONPATH</span><span class="p">,</span> <span class="n">group_name</span><span class="o">=</span><span class="n">minor_phase_str</span><span class="p">)</span>
+<span class="n">utils</span><span class="o">.</span><span class="n">slurm_submit_and_wait</span><span class="p">(</span><span class="n">bash_script_path</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submitted batch job 25116034
+25116034
+Slurm job not finished! Waiting 10 seconds...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slurm job not finished! Waiting 10 seconds...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slurm job not finished! Waiting 10 seconds...
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">32</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">bash_script_path</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">prepare_astra_bash</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">PYTHONPATH</span><span class="p">,</span> <span class="n">group_name</span><span class="o">=</span><span class="n">minor_phase_str</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">utils</span><span class="o">.</span><span class="n">slurm_submit_and_wait</span><span class="p">(</span><span class="n">bash_script_path</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nn">File ~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/nbGui/nb_utils.py:178,</span> in <span class="ni">slurm_submit_and_wait</span><span class="nt">(bash_script_path, wait_time_sec)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Slurm job not finished! Waiting </span><span class="si">{}</span><span class="s2"> seconds...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wait_time_sec</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait_time_sec</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grainsinos</span> <span class="o">=</span> <span class="n">read_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">group_name</span><span class="o">=</span><span class="n">minor_phase_str</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">gs</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">,</span> <span class="n">grains</span><span class="p">):</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">grain</span> <span class="o">=</span> <span class="n">g</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="id1">
+<h3>View outputs<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">update_frame</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">rec</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">recons</span><span class="p">[</span><span class="s2">&quot;iradon&quot;</span><span class="p">])</span>
+    <span class="n">sin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Grain &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">frame_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">grains</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Grain:&#39;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">rec</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recons</span><span class="p">[</span><span class="s2">&quot;astra&quot;</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+<span class="n">sin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sinoangles</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ybincens</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ssino</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&lt;-- Sample Y&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Sample X&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Astra MLEM Reconstruction&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Projection angle ($\degree$)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Grain sinogram&#39;</span><span class="p">)</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">update_frame</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">frame_slider</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/81be9b5c930dec1a3f3cfc2160ef107f0ef6afb7d0314bf46dab0df9ef841300.png" src="_images/81be9b5c930dec1a3f3cfc2160ef107f0ef6afb7d0314bf46dab0df9ef841300.png" />
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d60f12fdf4204fb397cfab501b92f9f5", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section id="id2">
+<h3>Assemble TensorMap<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Once again all the ASTRA reconstructed grains are assembled together in a tensormap object.
+It should look cleaner than the iradon reconstruction, you can also change the cutoff level with : <code class="docutils literal notranslate"><span class="pre">second_tmap_cutoff_level</span></code></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_map_astra</span> <span class="o">=</span> <span class="n">TensorMap</span><span class="o">.</span><span class="n">from_grainsinos</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">,</span> <span class="n">cutoff_level</span><span class="o">=</span><span class="n">second_tmap_cutoff_level</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astra&quot;</span><span class="p">)</span>
+<span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;ipf_z&quot;</span><span class="p">)</span>
+<span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;labels&quot;</span><span class="p">)</span>
+<span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;intensity&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ac2f73dbb51ee3fdf7c8d2480377da682f145e0a49cb9f4ad7ec4bc6d01508af.png" src="_images/ac2f73dbb51ee3fdf7c8d2480377da682f145e0a49cb9f4ad7ec4bc6d01508af.png" />
+<img alt="_images/9ab0a88f70df6a4189adfe9d48158f95fdbb427647d18011f54c0a8a2ef0bef4.png" src="_images/9ab0a88f70df6a4189adfe9d48158f95fdbb427647d18011f54c0a8a2ef0bef4.png" />
+<img alt="_images/63f6077b0e0a8a0655bf0871b40f95e2911fb8c7e9407022cf7d77cddcd9d0c5.png" src="_images/63f6077b0e0a8a0655bf0871b40f95e2911fb8c7e9407022cf7d77cddcd9d0c5.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="filter-by-reconstruction-quality">
+<h1>Filter by reconstruction quality<a class="headerlink" href="#filter-by-reconstruction-quality" title="Permalink to this heading">#</a></h1>
+<p>For weak grains, there will likely be many streaks, indicating a few grains have dodgy reconstructions and are probably not to be trusted.<br />
+To fix this, we can count how many pixels in the grain labels array each grain has.<br />
+It can be helpful to run this filtration more than once.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tensor_map_astra</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">labels</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="n">labels</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Grain ID&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Pixels in TensorMap&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/6889c0c62c3138614fbf76696019ed7a7204c5e4fa6309ac31aeb45753385554.png" src="_images/6889c0c62c3138614fbf76696019ed7a7204c5e4fa6309ac31aeb45753385554.png" />
+</div>
+</div>
+<p>Filter out grains with more than <code class="docutils literal notranslate"><span class="pre">grain_too_many_px</span> <span class="pre">pixels</span></code> in the label map.<br />
+This normally indicates a dodgy reconstruction for this grain.<br />
+Only really applies if the grains are very small!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bad_gids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span> <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">grain_too_many_px</span> <span class="ow">and</span> <span class="n">label</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">)</span><span class="si">}</span><span class="s2"> grains before filtration&quot;</span><span class="p">)</span>
+<span class="n">grainsinos_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">gs</span> <span class="k">for</span> <span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="n">gs</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">)</span> <span class="k">if</span> <span class="n">inc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bad_gids</span><span class="p">]</span>
+<span class="n">grain_labels_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">inc</span> <span class="k">for</span> <span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="n">gs</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">)</span> <span class="k">if</span> <span class="n">inc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bad_gids</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">grainsinos_clean</span><span class="p">)</span><span class="si">}</span><span class="s2"> grains after filtration&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">gs</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">grainsinos_clean</span><span class="p">,</span> <span class="n">grain_labels_clean</span><span class="p">):</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">gid</span> <span class="o">=</span> <span class="n">label</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>513 grains before filtration
+357 grains after filtration
+</pre></div>
+</div>
+</div>
+</div>
+<section id="assemble-cleaned-tensormap">
+<h2>Assemble cleaned TensorMap<a class="headerlink" href="#assemble-cleaned-tensormap" title="Permalink to this heading">#</a></h2>
+<p>Now this map should look better than the previous one.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_map_astra</span> <span class="o">=</span> <span class="n">TensorMap</span><span class="o">.</span><span class="n">from_grainsinos</span><span class="p">(</span><span class="n">grainsinos_clean</span><span class="p">,</span> <span class="n">cutoff_level</span><span class="o">=</span><span class="n">second_tmap_cutoff_level</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astra&quot;</span><span class="p">)</span>
+<span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;ipf_z&quot;</span><span class="p">)</span>
+<span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;labels&quot;</span><span class="p">)</span>
+<span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;intensity&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/16ce0e2f8f8b916c65f9f5011716eadc5acd49531166adcafeee6196a546bc8b.png" src="_images/16ce0e2f8f8b916c65f9f5011716eadc5acd49531166adcafeee6196a546bc8b.png" />
+<img alt="_images/872c0d58fd3baa2376914b894de614a85e9e6a90ba616b4968ff7584557a7a84.png" src="_images/872c0d58fd3baa2376914b894de614a85e9e6a90ba616b4968ff7584557a7a84.png" />
+<img alt="_images/c748a202cc832e992c6cf88d14577d0e788d3b844068cee4e6adf7a4e6281f86.png" src="_images/c748a202cc832e992c6cf88d14577d0e788d3b844068cee4e6adf7a4e6281f86.png" />
+</div>
+</div>
+</section>
+<section id="re-fit-grain-positions-from-reconstructions">
+<h2>Re-fit grain positions from reconstructions<a class="headerlink" href="#re-fit-grain-positions-from-reconstructions" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">grainsinos</span><span class="p">):</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">update_lab_position_from_recon</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">:</span>
+    <span class="n">gs</span><span class="o">.</span><span class="n">update_recon_parameters</span><span class="p">(</span><span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d045972602c44e6ab3f0dfd1a7f9d49e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.style.use(&#39;dark_background&#39;)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">translation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos_clean</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">translation</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos_clean</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">npks_4d</span><span class="o">/</span><span class="mi">10</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos_clean</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">rgb_z</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos_clean</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;IPF color Z&#39;</span><span class="p">,</span>  <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">rgb_y</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos_clean</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;IPF color Y&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">rgb_x</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos_clean</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;IPF color X&#39;</span><span class="p">,</span>  <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of 4D peaks&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s2">&quot;&lt;- Sample y (transverse)&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s2">&quot;Sample x (beam) -&gt;&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Grain centre-of-mass positions from 4D peaks&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ba400b03076f098cddca2874a6a9237d712890f9c0ac834dc0f81b7e71e37e14.png" src="_images/ba400b03076f098cddca2874a6a9237d712890f9c0ac834dc0f81b7e71e37e14.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="export">
+<h1>Export<a class="headerlink" href="#export" title="Permalink to this heading">#</a></h1>
+<p>If the reconstruction is satisfying, we can save everything to the grain file (<em>XXX_grains.h5</em>).</p>
+<section id="id3">
+<h2>Grains<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p>If you already ran this notebook once and saved some results, you can not overwrite them.
+This will inevitably lead to an error like :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">synchronously</span> <span class="n">create</span> <span class="n">group</span> <span class="p">(</span><span class="n">name</span> <span class="n">already</span> <span class="n">exists</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In that case, you can delete the existing grains with these lines of code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.forward_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+<span class="n">io</span><span class="o">.</span><span class="n">delete_group_from_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">group_name</span> <span class="o">=</span> <span class="n">minor_phase_str</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">delete_group_from_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">group_name</span> <span class="o">=</span> <span class="s1">&#39;TensorMap_&#39;</span> <span class="o">+</span> <span class="n">minor_phase_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">grainsinos</span><span class="p">,</span> <span class="n">overwrite_grains</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group_name</span><span class="o">=</span><span class="n">minor_phase_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="tensormap">
+<h2>TensorMap<a class="headerlink" href="#tensormap" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">to_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">h5group</span><span class="o">=</span><span class="s1">&#39;TensorMap_&#39;</span> <span class="o">+</span> <span class="n">minor_phase_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="xdmf">
+<h2>XDMF<a class="headerlink" href="#xdmf" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_map_astra</span><span class="o">.</span><span class="n">to_paraview</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">h5group</span><span class="o">=</span><span class="s1">&#39;TensorMap_&#39;</span> <span class="o">+</span> <span class="n">minor_phase_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "envname"
+        },
+        kernelOptions: {
+            name: "envname",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'envname'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tomo_1_index_minor_phase.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tomographic indexing notebook, with optimizations for minor phases</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tomo_3_refinement_minor_phase.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tomographic refinement notebook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peaks">Peaks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grains">Grains</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-phase-grains">Major phase grains</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#filtration">Filtration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-remove-major-phase-peaks">(optional) remove major phase peaks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-intensity">Filter by intensity</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-assignment">Peak assignment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grain-position-refinement">Grain position refinement</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grain-sinogram-generation">Grain sinogram generation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#grain-shape-reconstruction">Grain shape reconstruction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iradon">iradon</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-grain-as-example">First grain as example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruct-all-grains">Reconstruct all grains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-outputs">View outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assemble-tensormap">Assemble TensorMap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#astra">ASTRA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">View outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Assemble TensorMap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-reconstruction-quality">Filter by reconstruction quality</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assemble-cleaned-tensormap">Assemble cleaned TensorMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#re-fit-grain-positions-from-reconstructions">Re-fit grain positions from reconstructions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export">Export</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Grains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensormap">TensorMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xdmf">XDMF</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jegou Loïc
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

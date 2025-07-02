@@ -1,0 +1,1151 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tomographic indexing notebook with minor phase adjustments &#8212; Tutorial for scanning 3DXRD</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tomo_1_index_minor_phase';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Tutorial for scanning 3DXRD - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Tutorial for scanning 3DXRD - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_Major_Phase.html">Tomographic_reconstruction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomographic indexing notebook</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomographic mapping notebook</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomographic refinement notebook</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">Point-by-point refined map visualisation notebook</a></li>
+
+
+
+
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftomo_1_index_minor_phase.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tomo_1_index_minor_phase.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tomographic indexing notebook with minor phase adjustments</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic indexing notebook with minor phase adjustments</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peaks">Peaks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optionally-remove-some-noisy-peaks">Optionally remove some noisy peaks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#filtration">Filtration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-remove-major-phase-peaks">(optional) remove major phase peaks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-intensity">Filter by intensity</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ring-assignment">Ring assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export-data">Export data</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tomographic-indexing-notebook-with-minor-phase-adjustments">
+<h1>Tomographic indexing notebook with minor phase adjustments<a class="headerlink" href="#tomographic-indexing-notebook-with-minor-phase-adjustments" title="Permalink to this heading">#</a></h1>
+<p><strong>Written by Haixing Fang, Jon Wright and James Ball</strong><br />
+<strong>Date: 21/02/2025</strong></p>
+<p>This notebook will try to find good grain orientations from a 4D merge of your peak data.<br />
+This means your peaks have been merged across omega (rotation of the sample around the rotation axis) and dty (translation of the sample across the beam).</p>
+<p>This notebook is optimised for a weaker minor phase in a larger major phase sample.</p>
+<p>This notebook (and the tomo route in general) works best for low levels of deformation.<br />
+If it doesn’t seem to work well, try the point-by-point route instead!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/data/id11/nanoscope/install_ImageD11_from_git.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>The notebooks are written with all the parameters in the first cell.
+We will see how to tune these parameters along the notebook.</p>
+<p>For now, change :</p>
+<ol class="arabic simple">
+<li><p>the dataset name (<em>dset_path</em>)</p></li>
+<li><p>the major phase name (<em>major_phase_strs</em>), this is a list [] because you may want to filter the major phase and other minor phases you already indexed</p></li>
+<li><p>the minor phase name (<em>minor_phase_str</em>)</p></li>
+</ol>
+<div class="cell tag_parameters tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this cell is tagged with &#39;parameters&#39;</span>
+<span class="c1"># to view the tag, select the cell, then find the settings gear icon (right or left sidebar) and look for Cell Tags</span>
+
+<span class="c1"># python environment stuff</span>
+<span class="n">PYTHONPATH</span> <span class="o">=</span> <span class="n">setup_ImageD11_from_git</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Tutorial&#39;</span><span class="p">,</span> <span class="s1">&#39;SCRIPTS&#39;</span><span class="p">),</span> <span class="s1">&#39;ImageD11&#39;</span> <span class="p">)</span><span class="c1"># ( os.path.join( os.environ[&#39;HOME&#39;],&#39;Code&#39;), &#39;ImageD11_git&#39; )</span>
+
+<span class="c1"># dataset file to import</span>
+<span class="n">dset_path</span> <span class="o">=</span> <span class="s1">&#39;FeAu_0p5_tR_nscope/FeAu_0p5_tR_nscope_top_200um/FeAu_0p5_tR_nscope_top_200um_dataset.h5&#39;</span>
+
+<span class="c1"># phase names</span>
+<span class="n">major_phase_strs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fe&#39;</span><span class="p">]</span>
+<span class="n">minor_phase_str</span> <span class="o">=</span> <span class="s1">&#39;Au&#39;</span>
+
+<span class="c1"># peak filtration parameters</span>
+<span class="n">min_frames_per_peak</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># whether to filter out major phase peaks before trying to index</span>
+<span class="n">remove_major_phase_peaks</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">major_phase_cf_dstol</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">minor_phase_cf_frac</span> <span class="o">=</span> <span class="mf">0.9975</span>
+<span class="n">minor_phase_cf_dsmax</span> <span class="o">=</span> <span class="mf">1.594</span>
+<span class="n">minor_phase_cf_dstol</span> <span class="o">=</span> <span class="mf">0.005</span>
+
+<span class="c1"># indexing</span>
+<span class="n">rings_for_gen</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># now we want to decide which rings to score our found orientations against</span>
+<span class="c1"># generally we can just exclude dodgy rings (close to other phases, only a few peaks in etc)</span>
+<span class="n">rings_for_scoring</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+
+<span class="c1"># the sequence of hkl tolerances the indexer will iterate through</span>
+<span class="n">hkl_tols_seq</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>
+<span class="c1"># the sequence of minpks fractions the indexer will iterate through</span>
+<span class="n">fracs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">]</span>
+<span class="c1"># the max number of UBIs we can find per pair of rings</span>
+<span class="n">max_grains</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">peak_assign_tol</span> <span class="o">=</span> <span class="mf">0.025</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Setting path via: 
+sys.path.insert(0, /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11 )
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to import compiled C code for cImageD11 module
+Are you running from a source directory?
+Try something like:
+   python -m pip install --editable .
+or:
+   python setup.py develop
+or:
+   python setup.py build_ext --inplace
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">f5b627ddbece</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># python environment stuff</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">PYTHONPATH</span> <span class="o">=</span> <span class="n">setup_ImageD11_from_git</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Tutorial&#39;</span><span class="p">,</span> <span class="s1">&#39;SCRIPTS&#39;</span><span class="p">),</span> <span class="s1">&#39;ImageD11&#39;</span> <span class="p">)</span><span class="c1"># ( os.path.join( os.environ[&#39;HOME&#39;],&#39;Code&#39;), &#39;ImageD11_git&#39; )</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># dataset file to import</span>
+
+<span class="nn">&lt;string&gt;</span> in <span class="ni">setup_ImageD11_from_git</span><span class="nt">(path, checkout)</span>
+
+<span class="nn">&lt;string&gt;</span> in <span class="ni">run_ImageD11_from_git</span><span class="nt">(path, checkout)</span>
+
+<span class="o">~/</span><span class="n">Code</span><span class="o">/</span><span class="n">Tutorial</span><span class="o">/</span><span class="n">SCRIPTS</span><span class="o">/</span><span class="n">ImageD11</span><span class="o">/</span><span class="n">ImageD11</span><span class="o">/</span><span class="n">cImageD11</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11._cImageD11</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11._cImageD11</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ImageD11._cImageD11&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.grain</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.indexing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.nbGui.nb_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.peakselect</span><span class="w"> </span><span class="kn">import</span> <span class="n">select_ring_peaks_by_intensity</span><span class="p">,</span> <span class="n">remove_peaks_from_phases</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> ipympl
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="load-data">
+<h1>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>The dataset</p></li>
+<li><p>The phases</p></li>
+<li><p>The segmented peaks</p></li>
+</ol>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ImageD11</span><span class="o">.</span><span class="n">sinograms</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dset_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dataroot = &quot;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/RAW_DATA&quot;
+analysisroot = &quot;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/PROCESSED_DATA/20250626_LJ&quot;
+sample = &quot;FeAu_0p5_tR_nscope&quot;
+dset = &quot;top_200um&quot;
+shape = ( 275, 1448)
+# scans 275 from 1.1 to 275.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="phases">
+<h2>Phases<a class="headerlink" href="#phases" title="Permalink to this heading">#</a></h2>
+<p>Specify the path to the parameter file.</p>
+<p>If the parameter file was a json, we can access the unit cells via <code class="docutils literal notranslate"><span class="pre">ds.phases.unitcells</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">phases</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_phases_from_disk</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">phases</span><span class="o">.</span><span class="n">unitcells</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Au&#39;: Au | [ 4.005  4.005  4.005 90.    90.    90.   ] | 225,
+ &#39;Fe&#39;: Fe | [ 2.8694  2.8694  2.8694 90.     90.     90.    ] | 229,
+ &#39;B2&#39;: B2 | [ 3.8867  3.8867  3.8867 90.     90.     90.    ] | 221,
+ &#39;CeO2&#39;: CeO2 | [ 5.41143  5.41143  5.41143 90.      90.      90.     ] | F}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to decide which are our ‘major’ phases, which we will remove from our peaks before indexing.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">major_phase_unitcells</span> <span class="o">=</span> <span class="p">[</span><span class="n">ds</span><span class="o">.</span><span class="n">phases</span><span class="o">.</span><span class="n">unitcells</span><span class="p">[</span><span class="n">mps</span><span class="p">]</span> <span class="k">for</span> <span class="n">mps</span> <span class="ow">in</span> <span class="n">major_phase_strs</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">major_phase_unitcells</span><span class="p">)</span>
+<span class="n">minor_phase_unitcell</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">phases</span><span class="o">.</span><span class="n">unitcells</span><span class="p">[</span><span class="n">minor_phase_str</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">minor_phase_unitcell</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fe | [ 2.8694  2.8694  2.8694 90.     90.     90.    ] | 229
+Au | [ 4.005  4.005  4.005 90.    90.    90.   ] | 225
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="peaks">
+<h2>Peaks<a class="headerlink" href="#peaks" title="Permalink to this heading">#</a></h2>
+<p>Loading the peaks that have beem segmented in &#64;&#64;&#64;ref to 0_segmentation&#64;&#64;&#64; as a columnfile (<em>cf_4d</em>)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cf_4d</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_cf_4d</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">update_colfile_pars</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">)</span>  <span class="c1"># computes geometry, needed for filtration</span>
+<span class="k">for</span> <span class="n">major_phase_unitcell</span> <span class="ow">in</span> <span class="n">major_phase_unitcells</span><span class="p">:</span>
+    <span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">makerings</span><span class="p">(</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">makerings</span><span class="p">(</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading existing colfile from /data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/PROCESSED_DATA/20250626_LJ/FeAu_0p5_tR_nscope/FeAu_0p5_tR_nscope_top_200um/FeAu_0p5_tR_nscope_top_200um_peaks_4d.h5
+Reading your columnfile in hdf format
+</pre></div>
+</div>
+</div>
+</div>
+<section id="optionally-remove-some-noisy-peaks">
+<h3>Optionally remove some noisy peaks<a class="headerlink" href="#optionally-remove-some-noisy-peaks" title="Permalink to this heading">#</a></h3>
+<p>You can filter peaks that do not appear on a minimum number of frame.
+<code class="docutils literal notranslate"><span class="pre">min_frames_per_peaks</span> <span class="pre">=</span> <span class="pre">0</span></code></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">min_frames_per_peak</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">cf_4d</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">[</span><span class="s1">&#39;npk2d&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">min_frames_per_peak</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="filtration">
+<h1>Filtration<a class="headerlink" href="#filtration" title="Permalink to this heading">#</a></h1>
+<section id="optional-remove-major-phase-peaks">
+<h2>(optional) remove major phase peaks<a class="headerlink" href="#optional-remove-major-phase-peaks" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cf_4d</span></code>: all the peaks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">major_phase_cf_dstol</span></code>: it is the tolerance around the predicted reflection from the majorphase where the peaks will be removed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">major_phase_unitcells</span></code>: unitcell of the major phase</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">remove_major_phase_peaks</span><span class="p">:</span>
+    <span class="n">cf_4d</span> <span class="o">=</span> <span class="n">remove_peaks_from_phases</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">,</span> <span class="n">major_phase_cf_dstol</span><span class="p">,</span> <span class="n">major_phase_unitcells</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="filter-by-intensity">
+<h2>Filter by intensity<a class="headerlink" href="#filter-by-intensity" title="Permalink to this heading">#</a></h2>
+<p>Now we are filtering our peaks (<code class="docutils literal notranslate"><span class="pre">cf_4d</span></code>) to select only the strongest ones for indexing purposes only!</p>
+<ol class="arabic simple">
+<li><p>We first filter the peaks in <span class="math notranslate nohighlight">\(d^{*}\)</span> to keep only those close to the predicted peaks from the unit cell.</p></li>
+<li><p>We then sort our peaks by intensity, and take a certain intensity-weighted fraction of them.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">minor_phase_cf_dstol</span></code>: The tolerance in <span class="math notranslate nohighlight">\(d^{*}\)</span> between a peak and a predicted reflection.<br />
+<code class="docutils literal notranslate"><span class="pre">minor_phase_cf_dsmax</span></code>: The maximum <span class="math notranslate nohighlight">\(d^{*}\)</span> value ; peaks that have a <span class="math notranslate nohighlight">\(d^{*}\)</span> below this value will be kept for indexing. 6-8 rings max are normally sufficient.<br />
+<code class="docutils literal notranslate"><span class="pre">minor_phase_cf_frac</span></code>: The intensity fraction: <code class="docutils literal notranslate"><span class="pre">frac=0.9</span></code> keeps 90% of the peak intensity. We recommend that you choose a value close to the ‘elbow’ of the plot.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cf_strong</span> <span class="o">=</span> <span class="n">select_ring_peaks_by_intensity</span><span class="p">(</span><span class="n">cf_4d</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="n">minor_phase_cf_frac</span><span class="p">,</span> <span class="n">dsmax</span><span class="o">=</span><span class="n">minor_phase_cf_dsmax</span><span class="p">,</span> <span class="n">dstol</span><span class="o">=</span><span class="n">minor_phase_cf_dstol</span><span class="p">,</span> <span class="n">ucell</span><span class="o">=</span><span class="n">minor_phase_unitcell</span><span class="p">,</span> <span class="n">doplot</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "35c4d9d2f682447d9d17fc32e716404c", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filtered 143424 peaks from 513331
+</pre></div>
+</div>
+</div>
+</div>
+<p>All the peaks are plotted as a function of their intensity, and the strongest ones that are kept for indexing are highlighted in orange.
+By zooming aroung one single peak, it is possible to refine the value of <code class="docutils literal notranslate"><span class="pre">minor_phase_cf_dstol</span></code>.</p>
+<p>If peaks from the major and minor phase are very close to each other, the filtration of the major phase peaks will also remove peaks coming from the minor phase.
+During the indexing, it does not matter as long as you still have enough peaks to index the grains (= rings that differs from the major phase reflection).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">makerings</span><span class="p">(</span><span class="n">cf_strong</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">skip</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># we can skip peaks to speed up plotting if needed</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cf_4d</span><span class="o">.</span><span class="n">ds</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span> <span class="n">cf_4d</span><span class="o">.</span><span class="n">sum_intensity</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cf_4d&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cf_strong</span><span class="o">.</span><span class="n">ds</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span> <span class="n">cf_strong</span><span class="o">.</span><span class="n">sum_intensity</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;minor phase&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">,</span> <span class="mf">3e3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">inc</span><span class="p">,</span> <span class="n">major_phase_unitcell</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">major_phase_unitcells</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">,</span> <span class="mf">3e3</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">**</span><span class="n">inc</span><span class="p">),</span> <span class="mf">3e3</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">inc</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">color_sequences</span><span class="p">[</span><span class="s1">&#39;tab20&#39;</span><span class="p">][</span><span class="n">inc</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$d^{*}~(\AA^{-1})$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Intensity&#39;</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Peak filtration&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "3114304bdc954414ada7f93b8a0364ec", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="indexing">
+<h1>Indexing<a class="headerlink" href="#indexing" title="Permalink to this heading">#</a></h1>
+<section id="ring-assignment">
+<h2>Ring assignment<a class="headerlink" href="#ring-assignment" title="Permalink to this heading">#</a></h2>
+<p>For the current phase cell parameters and the selected strong peaks (<em>cf_strong</em>), the multiplicity of each reflection and the number of peaks to index is prompted.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indexer</span> <span class="o">=</span> <span class="n">ImageD11</span><span class="o">.</span><span class="n">indexing</span><span class="o">.</span><span class="n">indexer_from_colfile_and_ucell</span><span class="p">(</span><span class="n">cf_strong</span><span class="p">,</span> <span class="n">minor_phase_unitcell</span><span class="p">)</span>
+<span class="n">indexer</span><span class="o">.</span><span class="n">ds_tol</span> <span class="o">=</span> <span class="n">minor_phase_cf_dstol</span>
+<span class="n">ImageD11</span><span class="o">.</span><span class="n">indexing</span><span class="o">.</span><span class="n">loglevel</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">indexer</span><span class="o">.</span><span class="n">assigntorings</span><span class="p">()</span>
+<span class="n">ImageD11</span><span class="o">.</span><span class="n">indexing</span><span class="o">.</span><span class="n">loglevel</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Indexing </span><span class="si">{</span><span class="n">cf_strong</span><span class="o">.</span><span class="n">nrows</span><span class="si">}</span><span class="s2"> peaks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>info: gv: [[-0.01651424  0.32280078 -0.28214482]
+ [-0.1447915  -0.84005254  0.1310461 ]
+ [-0.01696531  0.41850492 -0.27376294]
+ ...
+ [ 0.0310081   0.39445751  0.16872218]
+ [-0.00794657  0.33277132 -0.27378634]
+ [-0.00475931  0.32720524 -0.27866476]] (143424, 3) float64
+info: Assign to rings, maximum d-spacing considered: 1.584157
+info: Ring assignment array shape (143424,)
+info: Ring     (  h,  k,  l) Mult  total indexed to_index  ubis  peaks_per_ubi   tth
+info: Ring 13  ( -6, -2,  0)   24   2353       0     2353    96     24  25.97
+info: Ring 12  ( -4, -2, -4)   30   3786       0     3786   124     30  24.62
+info: Ring 11  ( -3, -5, -1)   48   1101       0     1101    22     48  24.27
+info: Ring 10  ( -4,  0, -4)   12   3083       0     3083   254     12  23.19
+info: Ring 9   ( -3, -3, -3)   32   7394       0     7394   228     32  21.28
+info: Ring 8   ( -2, -2, -4)   24   7295       0     7295   300     24  20.05
+info: Ring 7   ( -4, -2,  0)   24   8858       0     8858   365     24  18.28
+info: Ring 6   ( -1, -3, -3)   24  11257       0    11257   463     24  17.82
+info: Ring 5   ( -4,  0,  0)    6   3810       0     3810   628      6  16.34
+info: Ring 4   ( -2, -2, -2)    8   6391       0     6391   790      8  14.14
+info: Ring 3   ( -3, -1, -1)   24  23054       0    23054   950     24  13.53
+info: Ring 2   ( -2,  0, -2)   12  16289       0    16289  1342     12  11.53
+info: Ring 1   ( -2,  0,  0)    6   7216       0     7216  1189      6  8.15
+info: Ring 0   ( -1, -1, -1)    8  41537       0    41537  5135      8  7.06
+info: 
+min_pks:  - Current  --&gt;  10
+info:           - Expected --&gt; 282
+
+info: Using only those peaks which are assigned to rings for scoring trial matrices
+info: Shape of scoring matrix (143424, 3)
+Indexing 143424 peaks
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skip</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># we can skip peaks to speed up plotting if needed</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">indexer</span><span class="o">.</span><span class="n">colfile</span><span class="o">.</span><span class="n">ds</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span> <span class="n">indexer</span><span class="o">.</span><span class="n">colfile</span><span class="o">.</span><span class="n">eta</span><span class="p">[::</span><span class="n">skip</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">indexer</span><span class="o">.</span><span class="n">ra</span><span class="p">[::</span><span class="n">skip</span><span class="p">]</span><span class="o">%</span><span class="k">20</span>, cmap=&#39;tab20&#39;, s=1)
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">inc</span><span class="p">,</span> <span class="n">major_phase_unitcell</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">major_phase_unitcells</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="o">+</span><span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="p">(</span><span class="n">inc</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span> <span class="mi">25</span><span class="o">+</span><span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="p">(</span><span class="n">inc</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">color_sequences</span><span class="p">[</span><span class="s1">&#39;tab20&#39;</span><span class="p">][</span><span class="n">inc</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">major_phase_unitcell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$d^{*}~(\AA^{-1})$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\eta~(\degree)$&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">minor_phase_unitcell</span><span class="o">.</span><span class="n">ringds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cf_strong</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">-</span> <span class="mf">0.02</span><span class="p">,</span> <span class="n">cf_strong</span><span class="o">.</span><span class="n">ds</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.02</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Ring assignments&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fd3402a7db05460d960d30f2b9fa293d", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Seven parameters are tunable for this step :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">minor_phase_cf_dstol</span></code> has been defined earlier,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rings_for_gen</span></code> is a list of integers. It refers to the theoretical reflections that will be use to generate grain candidates. For a fast indexing, it is smarter to select rings with a low multiplicity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rings_for_scoring</span></code> is a list of integers. It refers to the theoretical reflections that will be use to score the grain candidates. <code class="docutils literal notranslate"><span class="pre">rings_for_gen</span></code> has to be included in <code class="docutils literal notranslate"><span class="pre">rings_for_scoring</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hkl_tols_seq</span></code> is a list of floats. It refers to the tolerances around the <em>hkl</em> to assess if a peak belongs to a grain or not.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fracs</span></code> is a list of floats. It refers to the number of peaks a grain needs to have to accept it, as a fraction of the number of peaks a real grain is expected to have.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cosine_tol</span></code> is a float number. &#64;&#64;&#64; what is this &#64;&#64;&#64;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_grains</span></code> is an integer. The maximum number of grains that can be indexed (it highly unlikely to have more than 1000 grains in the major phase today 06/2025).</p></li>
+</ul>
+<p>The indexing will be executed in a loop such as :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fracs</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">khl</span> <span class="ow">in</span> <span class="n">hkl_tols_seq</span><span class="p">:</span>
+        <span class="n">Do_indexing</span>
+</pre></div>
+</div>
+<p>Note that if <span class="math notranslate nohighlight">\(n\)</span> peaks are assigned to a grain during the first round of indexing, these peaks will be removed from all the other indexing steps.</p>
+<p>Minor phases are often composed of a lot of very small grains, it is normal to index hundreds of grains.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cosine_tol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">ds</span><span class="o">.</span><span class="n">ostep</span><span class="p">))</span>
+<span class="n">grains</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">do_index</span><span class="p">(</span><span class="n">cf</span><span class="o">=</span><span class="n">cf_strong</span><span class="p">,</span>
+                                 <span class="n">unitcell</span><span class="o">=</span><span class="n">minor_phase_unitcell</span><span class="p">,</span>
+                                <span class="n">dstol</span><span class="o">=</span><span class="n">minor_phase_cf_dstol</span><span class="p">,</span>
+                                <span class="n">forgen</span><span class="o">=</span><span class="n">rings_for_gen</span><span class="p">,</span>
+                                <span class="n">foridx</span><span class="o">=</span><span class="n">rings_for_scoring</span><span class="p">,</span>
+                                <span class="n">hkl_tols</span><span class="o">=</span><span class="n">hkl_tols_seq</span><span class="p">,</span>
+                                <span class="n">fracs</span><span class="o">=</span><span class="n">fracs</span><span class="p">,</span>
+                                <span class="n">cosine_tol</span><span class="o">=</span><span class="n">cosine_tol</span><span class="p">,</span>
+                                <span class="n">max_grains</span><span class="o">=</span><span class="n">max_grains</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">ginc</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grains</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">gid</span> <span class="o">=</span> <span class="n">ginc</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">grains</span><span class="p">)</span><span class="si">}</span><span class="s1"> grains!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>196 peaks expected
+Trying these rings (counts, multiplicity, ring number): [(3810, 6, 5), (6391, 8, 4), (41537, 8, 0)]
+0.9 0.01 0
+0.9 0.02 99
+0.9 0.03 324
+0.9 0.04 458
+0.9 0.05 513
+Found 513 grains!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="results">
+<h1>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h1>
+<p>Let’s take a look at the results. Firstly, it is possible to compute the average cell parameters of all indexed grains.
+If the average parameters of the unit cell are far from the one used to do the indexing, it is possible to update them in the parameter file, and redo the indexing from scratch.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unit_cell_lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">unitcell</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grains</span><span class="p">])</span>
+<span class="n">median_unit_cell</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">unit_cell_lengths</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median unit cell:&quot;</span><span class="p">,</span> <span class="n">median_unit_cell</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">unit_cell_lengths</span><span class="p">[:,:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">median_unit_cell</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unit_cell_lengths</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Grain ID&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Unit cell length&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Median unit cell: [ 4.00583149  4.01067433  4.01553698 89.93781914 90.0021281  90.06583955]
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a494a269d8a7488280a66f6279e5fd17", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">assign_peaks_to_grains</span><span class="p">(</span><span class="n">grains</span><span class="p">,</span> <span class="n">cf_strong</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">peak_assign_tol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scoring and assigning 513 grains
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6706e795e56c422180d8813da494f4bd", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>The overall results for the minor phase often tends to look worse than the major phase. A lot of strong peaks are still unassigned and the number of peaks per grains is not as high.
+Besides, the sinograms also look a bit messier.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">plot_index_results</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">cf_strong</span><span class="p">,</span> <span class="s1">&#39;Indexing attempt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "baa637915b304ea88ba9118d6ca7d8a5", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Finally, it is possible to visualize some sinograms individually. Here the impact of <code class="docutils literal notranslate"><span class="pre">peak_assign_tol</span></code> is clearly visible. When it is increased too much, more noisy peaks start to appear on the sinogram.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">plot_grain_sinograms</span><span class="p">(</span><span class="n">grains</span><span class="p">,</span> <span class="n">cf_strong</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grains</span><span class="p">),</span> <span class="mi">25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "94454837085b4b5fa5ffe0695a1b8773", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="export-data">
+<h1>Export data<a class="headerlink" href="#export-data" title="Permalink to this heading">#</a></h1>
+<p>You can not save new indexed grains if there are some existing ones. This cell deletes all existing grains of the phase <code class="docutils literal notranslate"><span class="pre">phase_str</span></code> from the <em>h5</em> grain file.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.forward_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+<span class="n">io</span><span class="o">.</span><span class="n">delete_group_from_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">group_name</span> <span class="o">=</span> <span class="n">minor_phase_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">save_grains_to_disk</span><span class="p">(</span><span class="n">grains</span><span class="p">,</span> <span class="n">phase_name</span><span class="o">=</span><span class="n">minor_phase_str</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic indexing notebook with minor phase adjustments</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peaks">Peaks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optionally-remove-some-noisy-peaks">Optionally remove some noisy peaks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#filtration">Filtration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-remove-major-phase-peaks">(optional) remove major phase peaks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-intensity">Filter by intensity</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ring-assignment">Ring assignment</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export-data">Export data</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jegou Loïc
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: 0_segment_and_label
+- file: Tomographic_reconstruction_Major_Phase
+  sections:
+  - file: tomo_1_index
+  - file: tomo_2_map
+  - file: tomo_3_refinement
+  - file: 4_visualise
+- file: Tomographic_reconstruction_minor_phase
+  sections:
+  - file: tomo_1_index_minor_phase
+  - file: tomo_2_map_minor_phase
+  - file: tomo_3_refinement_minor_phase
+  - file: 4_visualise_minor_phase
+- file: 5_combine_phases
+

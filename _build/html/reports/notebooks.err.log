@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from matplotlib import rcParams, cycler
+import matplotlib.pyplot as plt
+import numpy as np
+plt.ion()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-f5105857ecb6>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0mrcParams[0m[0;34m,[0m [0mcycler[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mplt[0m[0;34m.[0m[0mion[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/pyplot.py[0m in [0;36m<module>[0;34m[0m
+[1;32m   2347[0m     [0mdict[0m[0;34m.[0m[0m__setitem__[0m[0;34m([0m[0mrcParams[0m[0;34m,[0m [0;34m"backend"[0m[0;34m,[0m [0mrcsetup[0m[0;34m.[0m[0m_auto_backend_sentinel[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2348[0m [0;31m# Set up the backend.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2349[0;31m [0mswitch_backend[0m[0;34m([0m[0mrcParams[0m[0;34m[[0m[0;34m"backend"[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2350[0m [0;34m[0m[0m
+[1;32m   2351[0m [0;31m# Just to be safe.  Interactive mode can be turned on without[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/pyplot.py[0m in [0;36mswitch_backend[0;34m(newbackend)[0m
+[1;32m    219[0m         else "matplotlib.backends.backend_{}".format(newbackend.lower()))
+[1;32m    220[0m [0;34m[0m[0m
+[0;32m--> 221[0;31m     [0mbackend_mod[0m [0;34m=[0m [0mimportlib[0m[0;34m.[0m[0mimport_module[0m[0;34m([0m[0mbackend_name[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    222[0m     Backend = type(
+[1;32m    223[0m         "Backend", (matplotlib.backends._Backend,), vars(backend_mod))
+
+[0;32m/usr/lib/python3.8/importlib/__init__.py[0m in [0;36mimport_module[0;34m(name, package)[0m
+[1;32m    125[0m                 [0;32mbreak[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    126[0m             [0mlevel[0m [0;34m+=[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 127[0;31m     [0;32mreturn[0m [0m_bootstrap[0m[0;34m.[0m[0m_gcd_import[0m[0;34m([0m[0mname[0m[0;34m[[0m[0mlevel[0m[0;34m:[0m[0;34m][0m[0;34m,[0m [0mpackage[0m[0;34m,[0m [0mlevel[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    128[0m [0;34m[0m[0m
+[1;32m    129[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib_inline'
+
