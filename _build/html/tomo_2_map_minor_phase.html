@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Tomographic mapping notebook, with optimizations for minor phases &#8212; Tutorial for scanning 3DXRD</title>
+    <title>Tomo_2_map_minor_phase &#8212; Tutorial for scanning 3DXRD</title>
   
   
   
@@ -64,14 +64,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="application/vnd.jupyter.widget-state+json">{"state": {"01173816d90643cf970c31875555784d": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_d5fd354f31bd4c6492dbf1fc77f2b7e4"}}, "081c6841788f449aa1f8b2b5ae334539": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "0adc13bf3bc74e66ab9a9a35bc1cc243": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_57780861832e40c8993eafa855c85704", "style": "IPY_MODEL_b7c5804c90e9426483da80aa1d5dea14", "value": "\u2007513/513\u2007[00:00&lt;00:00,\u20072489.75it/s]"}}, "199d2471debf464f86e2fb8d8b06f690": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "1ce6cd6762c14604b305956bc580156e": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "1e13f8a429ee4e0ab3b0ff92087b7090": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_e482927f43774470b08c8b687049a79b", "IPY_MODEL_01173816d90643cf970c31875555784d"], "layout": "IPY_MODEL_6ed7986c2a7e45c9947495e65dacd5b6"}}, "1eb84d4a191745dbab881d8f29e1c3ec": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "2532d730d3194b3db0786e9d915ed8c1": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "2b17855af64242f0919a726b680ec76a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "2ed7b96a105d409a8c2037cf0b037f56": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "302b6972d2914f2fa810d173fa534886": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "366a60a2bef24abd92dcaa1b4f82e400": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_4b950f5fa1014f58ae59ea8c74deae6a", "IPY_MODEL_7da15d18e8674094af42b417a731d0fb", "IPY_MODEL_6700a7769c124fec9bd088c1f7974f8a"], "layout": "IPY_MODEL_2b17855af64242f0919a726b680ec76a"}}, "4063ecb899134c17b295444f30a1371d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_855581b84011403b8d2b2b09c70b56e1", "style": "IPY_MODEL_d511bb2a1d8e41a68ff8c03cfb6fdf63", "value": "100%"}}, "43975d3741b346bd831cd56519b2c4de": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "460034715894495193c99ec8a88dc877": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "46205e78003a4b249d678a9bc275f356": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "4a858105bf434c548ac169f5697faa7f": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "4b950f5fa1014f58ae59ea8c74deae6a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_6656c736de9641eaad818e8f8d569451", "style": "IPY_MODEL_a5347518793c4e69908bfbcdbc3bf1be", "value": "100%"}}, "4cfba1787100461b98723717f2b0985c": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "4e9b1c70aed14866b1e3a8bfd170a706": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8ff3dc297f3243d9a9c566837ac4c956", "max": 513, "style": "IPY_MODEL_e3dbc291de3345859e50544dce72d014", "value": 513}}, "546a821eabe44fadb3782dabc736a487": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_de20b74a628f4547b3ec64b927129094", "IPY_MODEL_dd7f51d44dc24e468e4a937a7574c13a", "IPY_MODEL_e185676353df4166866eb6cffc5f0f8c"], "layout": "IPY_MODEL_b09c3e8ce2634700a6bc38ef916a4182"}}, "57780861832e40c8993eafa855c85704": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "607366553ed4448096094d11ecf7cf85": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6656c736de9641eaad818e8f8d569451": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6700a7769c124fec9bd088c1f7974f8a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_6a940ad908344bbfb5141b48e8a30faf", "style": "IPY_MODEL_081c6841788f449aa1f8b2b5ae334539", "value": "\u2007513/513\u2007[00:19&lt;00:00,\u200750.99it/s]"}}, "6a940ad908344bbfb5141b48e8a30faf": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6d07a72549cc4a45945bff9d5f12a2e7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_7e9fe8fd55614b9ebdfb867b0463ac0a", "style": "IPY_MODEL_ec04f8e5bcd94ce09b110233bda1ea65", "value": "\u2007513/513\u2007[00:44&lt;00:00,\u200711.59it/s]"}}, "6e4737ac5f9347ed9b29955154e4443c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_ef8d0d0409e84fc0a0d0b7f4d63662f3", "IPY_MODEL_4e9b1c70aed14866b1e3a8bfd170a706", "IPY_MODEL_0adc13bf3bc74e66ab9a9a35bc1cc243"], "layout": "IPY_MODEL_d4d098efaab6472fb779504209e3509a"}}, "6ed7986c2a7e45c9947495e65dacd5b6": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "6fede7d94b754cd8b48ed9bd0a0d7b1b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8dbd4f01b4564485980dd69cb10c19d2", "max": 513, "style": "IPY_MODEL_b024b19edcfb493eaa30cc15e3ec3b4f", "value": 513}}, "7c306bb954cd453ab77b53bc8c98bb94": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "7da15d18e8674094af42b417a731d0fb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_460034715894495193c99ec8a88dc877", "max": 513, "style": "IPY_MODEL_f09ea97aee224ba7a35adb1a0003f0ef", "value": 513}}, "7e9fe8fd55614b9ebdfb867b0463ac0a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "7f055a61b3184ee08792be7dffabfb5f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_d00487d6c9eb49bd8db8d3084ac1af35", "IPY_MODEL_c58fca74a1c841a7808b078dd12a40e8", "IPY_MODEL_f06058aa154548859c0a922825774fd8"], "layout": "IPY_MODEL_8bc9e945dfc0472f9853232a7e320a79"}}, "855581b84011403b8d2b2b09c70b56e1": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "8bc9e945dfc0472f9853232a7e320a79": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "8dbd4f01b4564485980dd69cb10c19d2": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "8ff3dc297f3243d9a9c566837ac4c956": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "9c57e25716254eb48320949b2cbf2b9e": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "a5347518793c4e69908bfbcdbc3bf1be": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "b024b19edcfb493eaa30cc15e3ec3b4f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "b09c3e8ce2634700a6bc38ef916a4182": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "b6dc70f142304e36beb5f8619e8a0dcb": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "b7c5804c90e9426483da80aa1d5dea14": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "bddee445e4e5414a99cc56871f860cf1": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "c46cf22e92c64f9bae0c4aad218769a4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "c58fca74a1c841a7808b078dd12a40e8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_4a858105bf434c548ac169f5697faa7f", "max": 513, "style": "IPY_MODEL_46205e78003a4b249d678a9bc275f356", "value": 513}}, "c68d541545174dbd9db73aa1a50d9238": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "IntSliderModel", "state": {"behavior": "drag-tap", "description": "Grain:", "layout": "IPY_MODEL_4cfba1787100461b98723717f2b0985c", "max": 512, "style": "IPY_MODEL_43975d3741b346bd831cd56519b2c4de"}}, "cee1d959b5ea4fa1b2d4cb75e37366a3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "cfd0de01f08d448696efa4107d33f669": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "d00487d6c9eb49bd8db8d3084ac1af35": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_302b6972d2914f2fa810d173fa534886", "style": "IPY_MODEL_cfd0de01f08d448696efa4107d33f669", "value": "100%"}}, "d045972602c44e6ab3f0dfd1a7f9d49e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_4063ecb899134c17b295444f30a1371d", "IPY_MODEL_6fede7d94b754cd8b48ed9bd0a0d7b1b", "IPY_MODEL_6d07a72549cc4a45945bff9d5f12a2e7"], "layout": "IPY_MODEL_9c57e25716254eb48320949b2cbf2b9e"}}, "d211de735b214f6898bdde6037325999": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "d4d098efaab6472fb779504209e3509a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "d511bb2a1d8e41a68ff8c03cfb6fdf63": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "d5fd354f31bd4c6492dbf1fc77f2b7e4": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "d60f12fdf4204fb397cfab501b92f9f5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_c68d541545174dbd9db73aa1a50d9238", "IPY_MODEL_e18f96e19dc84acd9a0371e53ec7cfb4"], "layout": "IPY_MODEL_1ce6cd6762c14604b305956bc580156e"}}, "dd7f51d44dc24e468e4a937a7574c13a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_bddee445e4e5414a99cc56871f860cf1", "max": 513, "style": "IPY_MODEL_cee1d959b5ea4fa1b2d4cb75e37366a3", "value": 513}}, "dda5cb3d4cd9401d9f7359372e0197a5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "ddbadd2df36a459aa326fba0f2e08dae": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "de20b74a628f4547b3ec64b927129094": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_199d2471debf464f86e2fb8d8b06f690", "style": "IPY_MODEL_ddbadd2df36a459aa326fba0f2e08dae", "value": "100%"}}, "e185676353df4166866eb6cffc5f0f8c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_7c306bb954cd453ab77b53bc8c98bb94", "style": "IPY_MODEL_c46cf22e92c64f9bae0c4aad218769a4", "value": "\u2007513/513\u2007[00:09&lt;00:00,\u200755.65it/s]"}}, "e18f96e19dc84acd9a0371e53ec7cfb4": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_b6dc70f142304e36beb5f8619e8a0dcb"}}, "e3dbc291de3345859e50544dce72d014": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "e482927f43774470b08c8b687049a79b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "IntSliderModel", "state": {"behavior": "drag-tap", "description": "Grain:", "layout": "IPY_MODEL_2532d730d3194b3db0786e9d915ed8c1", "max": 512, "style": "IPY_MODEL_1eb84d4a191745dbab881d8f29e1c3ec"}}, "ec04f8e5bcd94ce09b110233bda1ea65": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "ef8d0d0409e84fc0a0d0b7f4d63662f3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_607366553ed4448096094d11ecf7cf85", "style": "IPY_MODEL_dda5cb3d4cd9401d9f7359372e0197a5", "value": "100%"}}, "f06058aa154548859c0a922825774fd8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_d211de735b214f6898bdde6037325999", "style": "IPY_MODEL_2ed7b96a105d409a8c2037cf0b037f56", "value": "\u2007513/513\u2007[00:00&lt;00:00,\u2007729.22it/s]"}}, "f09ea97aee224ba7a35adb1a0003f0ef": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}}, "version_major": 2, "version_minor": 0}</script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tomo_2_map_minor_phase';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tomographic refinement notebook" href="tomo_3_refinement_minor_phase.html" />
-    <link rel="prev" title="Tomographic indexing notebook, with optimizations for minor phases" href="tomo_1_index_minor_phase.html" />
+    <link rel="next" title="Tomo_3_refinement_minor_phase" href="tomo_3_refinement_minor_phase.html" />
+    <link rel="prev" title="Tomo_1_index_minor_phase" href="tomo_1_index_minor_phase.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,24 +166,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to S3DXRD tutorial
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">Dataset creation, segmentation and peak labelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">0_segment_and_label</a></li>
 
 
 
 
 <li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_Major_Phase.html">Tomographic reconstruction (major phase)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomographic indexing notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomo_1_index</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomographic mapping notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomo_2_map</a></li>
 
 
 
@@ -196,11 +193,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomographic refinement notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomo_3_refinement</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">Point-by-point refined map visualisation notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">4_visualise</a></li>
 
 
 
@@ -209,13 +206,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Tomographic_reconstruction_minor_phase.html">Tomographic reconstruction (minor phase)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tomo_1_index_minor_phase.html">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index_minor_phase.html">Tomo_1_index_minor_phase</a></li>
 
 
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomo_2_map_minor_phase</a></li>
 
 
 
@@ -226,11 +223,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement_minor_phase.html">Tomographic refinement notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement_minor_phase.html">Tomo_3_refinement_minor_phase</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">Point-by-point refined map visualisation notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">4_visualise_minor_phase</a></li>
 
 
 
@@ -238,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">Notebook to combine TensorMap phases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">5_combine_phases</a></li>
 
 
 </ul>
@@ -426,7 +423,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tomographic mapping notebook, with optimizations for minor phases</h1>
+    <h1>Tomo_2_map_minor_phase</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -436,7 +433,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomo_2_map_minor_phase</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tomographic-mapping-notebook-with-optimizations-for-minor-phases">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
@@ -493,8 +493,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tomographic-mapping-notebook-with-optimizations-for-minor-phases">
-<h1>Tomographic mapping notebook, with optimizations for minor phases<a class="headerlink" href="#tomographic-mapping-notebook-with-optimizations-for-minor-phases" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tomo-2-map-minor-phase">
+<h1>Tomo_2_map_minor_phase<a class="headerlink" href="#tomo-2-map-minor-phase" title="Permalink to this heading">#</a></h1>
+<section id="tomographic-mapping-notebook-with-optimizations-for-minor-phases">
+<h2>Tomographic mapping notebook, with optimizations for minor phases<a class="headerlink" href="#tomographic-mapping-notebook-with-optimizations-for-minor-phases" title="Permalink to this heading">#</a></h2>
 <p><strong>Written by Haixing Fang, Jon Wright and James Ball</strong><br />
 <strong>Date: 21/02/2025</strong></p>
 <p>This notebook will try to reconstruct grain shapes and positions from the grain orientations you found in the first notebook.<br />
@@ -633,6 +635,7 @@ sys.path.insert(0, /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11 )
 </div>
 </details>
 </div>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="load-data">
 <h1>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h1>
@@ -915,7 +918,7 @@ This time, we don’t clip via <code class="docutils literal notranslate"><span 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scoring and assigning 513 grains
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0e49e0669ae541bcbba667ca395567d9"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "53db0108f102473cabbfa2b6cf8ae507"}</script></div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1006,7 +1009,7 @@ All these “false grains” will be filtered out during the mapping process (it
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b39708433ad8412a8e957b4143590b22"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9b6741da2da746e593c03c26e975caff"}</script></div>
 </div>
 <p>^ if you segmented frelon data for scanning, the above cell won’t work, because we don’t have a 2d peaks table
 you can instead try the below to prepare the peaks from the 2D peaks:</p>
@@ -1034,7 +1037,7 @@ you can instead try the below to prepare the peaks from the 2D peaks:</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "37345c731d59419fab2029a44638eff6"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "29e9336b7bdb442da22db45a8c8224e6"}</script></div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1194,7 +1197,7 @@ There should be a sinogram on the left picture and a reconstruction of the grain
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2a431ec78a42444d8ad74bf34e59bee4"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "88b01a8ab0a043cab778680493e9c9c7"}</script></div>
 </div>
 </section>
 <section id="view-outputs">
@@ -1233,7 +1236,7 @@ If some grains look messy (lots of streak), it’s okay, the next reconstruction
 </details>
 <div class="cell_output docutils container">
 <img alt="_images/f07dbe9e172ba29760663d3adbe9cee05618783d8bbf3424748f8684b644f72b.png" src="_images/f07dbe9e172ba29760663d3adbe9cee05618783d8bbf3424748f8684b644f72b.png" />
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "66b6d4374d2a4a59950e66cb20674b7a"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e2701ef0ce784f06a0a6ef9d255d8831"}</script></div>
 </div>
 </section>
 <section id="assemble-tensormap">
@@ -1298,8 +1301,8 @@ The ASTRA EM_CUDA method will be used.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submitted batch job 25116034
-25116034
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submitted batch job 25118600
+25118600
 Slurm job not finished! Waiting 10 seconds...
 </pre></div>
 </div>
@@ -1645,7 +1648,7 @@ This will inevitably lead to an error like :</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tomographic indexing notebook, with optimizations for minor phases</p>
+        <p class="prev-next-title">Tomo_1_index_minor_phase</p>
       </div>
     </a>
     <a class="right-next"
@@ -1653,7 +1656,7 @@ This will inevitably lead to an error like :</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tomographic refinement notebook</p>
+        <p class="prev-next-title">Tomo_3_refinement_minor_phase</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1672,7 +1675,10 @@ This will inevitably lead to an error like :</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomo_2_map_minor_phase</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tomographic-mapping-notebook-with-optimizations-for-minor-phases">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>

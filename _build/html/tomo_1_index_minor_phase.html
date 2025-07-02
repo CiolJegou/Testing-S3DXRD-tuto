@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Tomographic indexing notebook, with optimizations for minor phases &#8212; Tutorial for scanning 3DXRD</title>
+    <title>Tomo_1_index_minor_phase &#8212; Tutorial for scanning 3DXRD</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tomo_1_index_minor_phase';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tomographic mapping notebook, with optimizations for minor phases" href="tomo_2_map_minor_phase.html" />
+    <link rel="next" title="Tomo_2_map_minor_phase" href="tomo_2_map_minor_phase.html" />
     <link rel="prev" title="Tomographic reconstruction (minor phase)" href="Tomographic_reconstruction_minor_phase.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -166,24 +166,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to S3DXRD tutorial
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">Dataset creation, segmentation and peak labelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">0_segment_and_label</a></li>
 
 
 
 
 <li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_Major_Phase.html">Tomographic reconstruction (major phase)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomographic indexing notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomo_1_index</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomographic mapping notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomo_2_map</a></li>
 
 
 
@@ -193,11 +193,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomographic refinement notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomo_3_refinement</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">Point-by-point refined map visualisation notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">4_visualise</a></li>
 
 
 
@@ -206,13 +206,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Tomographic_reconstruction_minor_phase.html">Tomographic reconstruction (minor phase)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomo_1_index_minor_phase</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_2_map_minor_phase.html">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map_minor_phase.html">Tomo_2_map_minor_phase</a></li>
 
 
 
@@ -223,11 +223,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement_minor_phase.html">Tomographic refinement notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement_minor_phase.html">Tomo_3_refinement_minor_phase</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">Point-by-point refined map visualisation notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">4_visualise_minor_phase</a></li>
 
 
 
@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">Notebook to combine TensorMap phases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">5_combine_phases</a></li>
 
 
 </ul>
@@ -423,7 +423,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tomographic indexing notebook, with optimizations for minor phases</h1>
+    <h1>Tomo_1_index_minor_phase</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -433,7 +433,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomo_1_index_minor_phase</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tomographic-indexing-notebook-with-optimizations-for-minor-phases">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
@@ -466,8 +469,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tomographic-indexing-notebook-with-optimizations-for-minor-phases">
-<h1>Tomographic indexing notebook, with optimizations for minor phases<a class="headerlink" href="#tomographic-indexing-notebook-with-optimizations-for-minor-phases" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tomo-1-index-minor-phase">
+<h1>Tomo_1_index_minor_phase<a class="headerlink" href="#tomo-1-index-minor-phase" title="Permalink to this heading">#</a></h1>
+<section id="tomographic-indexing-notebook-with-optimizations-for-minor-phases">
+<h2>Tomographic indexing notebook, with optimizations for minor phases<a class="headerlink" href="#tomographic-indexing-notebook-with-optimizations-for-minor-phases" title="Permalink to this heading">#</a></h2>
 <p><strong>Written by Haixing Fang, Jon Wright and James Ball</strong><br />
 <strong>Date: 21/02/2025</strong></p>
 <p>This notebook will try to find good grain orientations from a 4D merge of your peak data.<br />
@@ -575,6 +580,7 @@ sys.path.insert(0, /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11 )
 </div>
 </details>
 </div>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="load-data">
 <h1>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h1>
@@ -819,18 +825,18 @@ During the indexing, it does not matter as long as you still have enough peaks t
 info: Assign to rings, maximum d-spacing considered: 1.584157
 info: Ring assignment array shape (143424,)
 info: Ring     (  h,  k,  l) Mult  total indexed to_index  ubis  peaks_per_ubi   tth
-info: Ring 13  (  0, -2, -6)   24   2353       0     2353    96     24  25.97
-info: Ring 12  ( -4, -4, -2)   30   3786       0     3786   124     30  24.62
-info: Ring 11  ( -3, -1, -5)   48   1101       0     1101    22     48  24.27
-info: Ring 10  ( -4, -4,  0)   12   3083       0     3083   254     12  23.19
+info: Ring 13  ( -6,  0, -2)   24   2353       0     2353    96     24  25.97
+info: Ring 12  ( -2, -4, -4)   30   3786       0     3786   124     30  24.62
+info: Ring 11  ( -1, -5, -3)   48   1101       0     1101    22     48  24.27
+info: Ring 10  ( -4,  0, -4)   12   3083       0     3083   254     12  23.19
 info: Ring 9   ( -3, -3, -3)   32   7394       0     7394   228     32  21.28
-info: Ring 8   ( -4, -2, -2)   24   7295       0     7295   300     24  20.05
+info: Ring 8   ( -2, -2, -4)   24   7295       0     7295   300     24  20.05
 info: Ring 7   ( -2,  0, -4)   24   8858       0     8858   365     24  18.28
-info: Ring 6   ( -3, -3, -1)   24  11257       0    11257   463     24  17.82
-info: Ring 5   (  0, -4,  0)    6   3810       0     3810   628      6  16.34
+info: Ring 6   ( -1, -3, -3)   24  11257       0    11257   463     24  17.82
+info: Ring 5   (  0,  0, -4)    6   3810       0     3810   628      6  16.34
 info: Ring 4   ( -2, -2, -2)    8   6391       0     6391   790      8  14.14
-info: Ring 3   ( -3, -1, -1)   24  23054       0    23054   950     24  13.53
-info: Ring 2   ( -2,  0, -2)   12  16289       0    16289  1342     12  11.53
+info: Ring 3   ( -1, -1, -3)   24  23054       0    23054   950     24  13.53
+info: Ring 2   (  0, -2, -2)   12  16289       0    16289  1342     12  11.53
 info: Ring 1   (  0,  0, -2)    6   7216       0     7216  1189      6  8.15
 info: Ring 0   ( -1, -1, -1)    8  41537       0    41537  5135      8  7.06
 info: 
@@ -1125,7 +1131,7 @@ Besides, the sinograms also look a bit messier.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tomographic mapping notebook, with optimizations for minor phases</p>
+        <p class="prev-next-title">Tomo_2_map_minor_phase</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1144,7 +1150,10 @@ Besides, the sinograms also look a bit messier.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomo_1_index_minor_phase</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tomographic-indexing-notebook-with-optimizations-for-minor-phases">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phases">Phases</a></li>
