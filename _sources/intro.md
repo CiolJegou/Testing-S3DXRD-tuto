@@ -1,11 +1,10 @@
-# Welcome to your Jupyter Book
+# Welcome to S3DXRD tutorial
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+This is a complete tutorial to get a grain map from scratch using ImageD11 package.
+This tutorial relies on data that have been collected at ID11 beamline. It is iron with small gold particles inside. The goal of this tutorial is to go through all the necessary steps to get a good reconstructed grain map. 
+Basic knowledge of python would be very helpful to get a better understanding.
 
-Check out the content pages bundled with this sample book to see more.
+More informations about the functions themselves : https://imaged11.readthedocs.io/en/latest/
 
 ```{tableofcontents}
 ```

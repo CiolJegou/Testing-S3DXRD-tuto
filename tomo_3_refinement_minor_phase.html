@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Tomographic refinement notebook &#8212; Tutorial for scanning 3DXRD</title>
+    <title>Tomo_3_refinement_minor_phase &#8212; Tutorial for scanning 3DXRD</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tomo_3_refinement_minor_phase';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Point-by-point refined map visualisation notebook" href="4_visualise_minor_phase.html" />
-    <link rel="prev" title="Tomographic mapping notebook, with optimizations for minor phases" href="tomo_2_map_minor_phase.html" />
+    <link rel="next" title="4_visualise_minor_phase" href="4_visualise_minor_phase.html" />
+    <link rel="prev" title="Tomo_2_map_minor_phase" href="tomo_2_map_minor_phase.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,24 +166,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to S3DXRD tutorial
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">Dataset creation, segmentation and peak labelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_segment_and_label.html">0_segment_and_label</a></li>
 
 
 
 
 <li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_Major_Phase.html">Tomographic reconstruction (major phase)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomographic indexing notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomo_1_index</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomographic mapping notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomo_2_map</a></li>
 
 
 
@@ -193,11 +193,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomographic refinement notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomo_3_refinement</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">Point-by-point refined map visualisation notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">4_visualise</a></li>
 
 
 
@@ -206,13 +206,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Tomographic_reconstruction_minor_phase.html">Tomographic reconstruction (minor phase)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tomo_1_index_minor_phase.html">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index_minor_phase.html">Tomo_1_index_minor_phase</a></li>
 
 
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="tomo_2_map_minor_phase.html">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map_minor_phase.html">Tomo_2_map_minor_phase</a></li>
 
 
 
@@ -223,11 +223,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomographic refinement notebook</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tomo_3_refinement_minor_phase</a></li>
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">Point-by-point refined map visualisation notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">4_visualise_minor_phase</a></li>
 
 
 
@@ -235,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">Notebook to combine TensorMap phases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">5_combine_phases</a></li>
 
 
 </ul>
@@ -423,7 +423,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tomographic refinement notebook</h1>
+    <h1>Tomo_3_refinement_minor_phase</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -433,8 +433,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic refinement notebook</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram">NOTE: It is highly recommended to run this notebook on a Jupyter server with many cores and a lot of RAM.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomo_3_refinement_minor_phase</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tomographic-refinement-notebook">Tomographic refinement notebook</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram">NOTE: It is highly recommended to run this notebook on a Jupyter server with many cores and a lot of RAM.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
@@ -464,13 +467,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tomographic-refinement-notebook">
-<h1>Tomographic refinement notebook<a class="headerlink" href="#tomographic-refinement-notebook" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tomo-3-refinement-minor-phase">
+<h1>Tomo_3_refinement_minor_phase<a class="headerlink" href="#tomo-3-refinement-minor-phase" title="Permalink to this heading">#</a></h1>
+<section id="tomographic-refinement-notebook">
+<h2>Tomographic refinement notebook<a class="headerlink" href="#tomographic-refinement-notebook" title="Permalink to this heading">#</a></h2>
 <p><strong>Written by Haixing Fang, Jon Wright and James Ball</strong><br />
 <strong>Date: 21/02/2025</strong></p>
 <p>This notebook will try to perform a point-by-point strain refinement from your tomographic-derived grain shapes.</p>
 <section id="note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram">
-<h2>NOTE: It is highly recommended to run this notebook on a Jupyter server with many cores and a lot of RAM.<a class="headerlink" href="#note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram" title="Permalink to this heading">#</a></h2>
+<h3>NOTE: It is highly recommended to run this notebook on a Jupyter server with many cores and a lot of RAM.<a class="headerlink" href="#note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram" title="Permalink to this heading">#</a></h3>
 <p>The compute_origins() function in particular runs locally and can be compute-intensive for large datasets.<br />
 If this is a big scan (e.g 100 million+ 2D peaks), you should definitely refine on the cluster rather than locally.</p>
 <div class="cell tag_hide-input docutils container">
@@ -579,6 +584,7 @@ sys.path.insert(0, /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11 )
 </div>
 </details>
 </div>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="load-data">
@@ -694,44 +700,6 @@ shape = ( 275, 1448)
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">grainsinos</span> <span class="o">=</span> <span class="n">read_h5</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">grainsfile</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">phase_str</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">grains</span> <span class="o">=</span> <span class="p">[</span><span class="n">gs</span><span class="o">.</span><span class="n">grain</span> <span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">grainsinos</span><span class="p">]</span>
-
-<span class="nn">File ~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/sinogram.py:485,</span> in <span class="ni">read_h5</span><span class="nt">(filename, ds, group_name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">482</span>         <span class="n">g</span> <span class="o">=</span> <span class="n">ImageD11</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">grain</span><span class="o">.</span><span class="n">from_h5py_group</span><span class="p">(</span><span class="n">grain_group</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">484</span>         <span class="c1"># create the GrainSinogram object</span>
-<span class="ne">--&gt; </span><span class="mi">485</span>         <span class="n">gs</span> <span class="o">=</span> <span class="n">GrainSinogram</span><span class="o">.</span><span class="n">from_h5py_group</span><span class="p">(</span><span class="n">grain_group</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">487</span>         <span class="n">gs_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">489</span> <span class="k">return</span> <span class="n">gs_objects</span>
-
-<span class="nn">File ~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/sinogram.py:391,</span> in <span class="ni">GrainSinogram.from_h5py_group</span><span class="nt">(cls, group, ds, grain)</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span> <span class="k">if</span> <span class="s2">&quot;recons&quot;</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="k">for</span> <span class="n">recon_attr</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;recons&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-<span class="ne">--&gt; </span><span class="mi">391</span>         <span class="n">recon_var</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s2">&quot;recons&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">recon_attr</span><span class="p">)[:]</span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span>         <span class="n">grainsino_obj</span><span class="o">.</span><span class="n">recons</span><span class="p">[</span><span class="n">recon_attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">recon_var</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span> <span class="k">return</span> <span class="n">grainsino_obj</span>
-
-<span class="nn">File h5py/_objects.pyx:56,</span> in <span class="ni">h5py._objects.with_phil.wrapper</span><span class="nt">()</span>
-
-<span class="nn">File h5py/_objects.pyx:57,</span> in <span class="ni">h5py._objects.with_phil.wrapper</span><span class="nt">()</span>
-
-<span class="nn">File ~/.conda/envs/diffraction/lib/python3.9/site-packages/h5py/_hl/dataset.py:820,</span> in <span class="ni">Dataset.__getitem__</span><span class="nt">(self, args, new_dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">818</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fast_read_ok</span> <span class="ow">and</span> <span class="p">(</span><span class="n">new_dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">819</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">820</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fast_reader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">821</span>     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">822</span>         <span class="k">pass</span>  <span class="c1"># Fall back to Python read pathway below</span>
-
-<span class="nn">File h5py/_selector.pyx:376,</span> in <span class="ni">h5py._selector.Reader.read</span><span class="nt">()</span>
-
-<span class="ne">OSError</span>: Can&#39;t synchronously read data (addr overflow, addr = 869639300, size = 223, eoa = 869639300)
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="tensormap">
@@ -874,36 +842,68 @@ or load from disk:</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I will delete an existing refined peaks H5 file if I find it on disk!
 Waiting 10 seconds for you to interrupt this if you are unhappy
-Continuing
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Continuing
 To disable this prompt, set prompt_del=False when calling setpeaks()
-0 0.4325 (1, 1, 1) 8 15908 used, sum_intensity&gt; 183.10968738548544
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0.4325 (1, 1, 1) 8 15908 used, sum_intensity&gt; 183.10968738548544
 1 0.4994 (0, 2, 0) 6 14534 used, sum_intensity&gt; 157.17897518264638
-2 0.7062 (0, 2, 2) 12 20900 used, sum_intensity&gt; 60.47791424213851
-3 0.8281 (1, 3, 1) 24 29312 used, sum_intensity&gt; 45.874206934296794
-4 0.8649 (2, 2, 2) 8 10958 used, sum_intensity&gt; 36.66275651995608
-5 0.9988 (4, 0, 0) 6 6790 used, sum_intensity&gt; 26.08950978493854
-6 1.0884 (3, 1, 3) 24 20074 used, sum_intensity&gt; 18.885490060557423
-7 1.1166 (4, 2, 0) 24 15932 used, sum_intensity&gt; 24.966159367185547
-8 1.2232 (4, 2, 2) 24 9427 used, sum_intensity&gt; 33.514339684277374
-9 1.2974 (1, 5, 1) 32 49579 used, sum_intensity&gt; 389.52420316769684
-10 1.4124 (4, 0, 4) 12 7433 used, sum_intensity&gt; 12.874928403559656
-11 1.4772 (3, 5, 1) 48 322016 used, sum_intensity&gt; 213.72426323866628
-12 1.4981 (0, 0, 6) 30 10008 used, sum_intensity&gt; 6.963762831306853
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 0.7062 (2, 0, 2) 12 20900 used, sum_intensity&gt; 60.47791424213851
+3 0.8281 (3, 1, 1) 24 29312 used, sum_intensity&gt; 45.874206934296794
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 0.8649 (2, 2, 2) 8 10958 used, sum_intensity&gt; 36.66275651995608
+5 0.9988 (0, 4, 0) 6 6790 used, sum_intensity&gt; 26.08950978493854
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 1.0884 (3, 1, 3) 24 20074 used, sum_intensity&gt; 18.885490060557423
+7 1.1166 (4, 0, 2) 24 15932 used, sum_intensity&gt; 24.966159367185547
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 1.2232 (2, 4, 2) 24 9427 used, sum_intensity&gt; 33.514339684277374
+9 1.2974 (1, 1, 5) 32 49579 used, sum_intensity&gt; 389.52420316769684
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 1.4124 (4, 0, 4) 12 7433 used, sum_intensity&gt; 12.874928403559656
+11 1.4772 (5, 3, 1) 48 322016 used, sum_intensity&gt; 213.72426323866628
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12 1.4981 (6, 0, 0) 30 10008 used, sum_intensity&gt; 6.963762831306853
 13 1.5792 (2, 6, 0) 24 8112 used, sum_intensity&gt; 9.869744188098581
-14 1.6373 (3, 5, 3) 24 185301 used, sum_intensity&gt; 184.12102817209393
-15 1.6562 (2, 2, 6) 24 3874 used, sum_intensity&gt; 24.00650846051696
-16 1.7299 (4, 4, 4) 8 2830 used, sum_intensity&gt; 7.288107033708139
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14 1.6373 (5, 3, 3) 24 185301 used, sum_intensity&gt; 184.12102817209393
+15 1.6562 (2, 6, 2) 24 3874 used, sum_intensity&gt; 24.00650846051696
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16 1.7299 (4, 4, 4) 8 2830 used, sum_intensity&gt; 7.288107033708139
 17 1.7831 (7, 1, 1) 48 101803 used, sum_intensity&gt; 77.07909360574004
-18 1.8005 (4, 0, 6) 24 1545 used, sum_intensity&gt; 2.319181186213638
-19 1.8685 (2, 4, 6) 48 1634 used, sum_intensity&gt; 2.338085158130839
-20 1.9179 (3, 5, 5) 72 2536 used, sum_intensity&gt; 3.511028768659703
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18 1.8005 (0, 6, 4) 24 1545 used, sum_intensity&gt; 2.319181186213638
+19 1.8685 (6, 4, 2) 48 1634 used, sum_intensity&gt; 2.338085158130839
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20 1.9179 (5, 5, 3) 72 2536 used, sum_intensity&gt; 3.511028768659703
 21 1.9975 (0, 8, 0) 6 230 used, sum_intensity&gt; 0.9989972934768272
-22 2.0438 (3, 3, 7) 24 353 used, sum_intensity&gt; 2.108480792707851
-23 2.0590 (6, 4, 4) 48 326 used, sum_intensity&gt; 1.0664877031896802
-24 2.1187 (2, 8, 2) 36 238 used, sum_intensity&gt; 2.959485801448638
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22 2.0438 (3, 3, 7) 24 353 used, sum_intensity&gt; 2.108480792707851
+23 2.0590 (4, 4, 6) 48 326 used, sum_intensity&gt; 1.0664877031896802
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24 2.1187 (2, 8, 2) 36 238 used, sum_intensity&gt; 2.959485801448638
 25 2.1624 (5, 5, 5) 56 6 used, sum_intensity&gt; 0.10130029672745514
-26 2.1767 (2, 6, 6) 24 63 used, sum_intensity&gt; 0.7060126236384257
-Using for refinement: 841722 npks, forref 724 range(0, 27)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26 2.1767 (2, 6, 6) 24 63 used, sum_intensity&gt; 0.7060126236384257
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using for refinement: 841722 npks, forref 724 range(0, 27)
 </pre></div>
 </div>
 </div>
@@ -943,11 +943,13 @@ Running test function twice for the first 10000 peaks to guess speed...
 This is because we get speed advantages with peaks on consecutive frames
 First time to trigger NJIT
 Now we time
-I estimate roughly 0.36452824566125963 seconds for all peaks in self.icolf
-That&#39;s 0.00010125784601701657 hours
+I estimate roughly 0.3636450930826474 seconds for all peaks in self.icolf
+That&#39;s 0.00010101252585629095 hours
 Lexsort...
 Running numba computation on 39 threads, may take a while!
-xpos_refined column added to self.icolf
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>xpos_refined column added to self.icolf
 Saving self.icolf to disk with new column
 </pre></div>
 </div>
@@ -979,7 +981,9 @@ If compute_origins took more than a couple of minutes to run, we suggest setting
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Launching Numba parallel refinement on 39 threads
-Saving refined map to disk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving refined map to disk
 </pre></div>
 </div>
 </div>
@@ -1050,7 +1054,7 @@ Saving myself to disk
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tomographic mapping notebook, with optimizations for minor phases</p>
+        <p class="prev-next-title">Tomo_2_map_minor_phase</p>
       </div>
     </a>
     <a class="right-next"
@@ -1058,7 +1062,7 @@ Saving myself to disk
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Point-by-point refined map visualisation notebook</p>
+        <p class="prev-next-title">4_visualise_minor_phase</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1077,8 +1081,11 @@ Saving myself to disk
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomographic refinement notebook</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram">NOTE: It is highly recommended to run this notebook on a Jupyter server with many cores and a lot of RAM.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tomo_3_refinement_minor_phase</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tomographic-refinement-notebook">Tomographic refinement notebook</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-it-is-highly-recommended-to-run-this-notebook-on-a-jupyter-server-with-many-cores-and-a-lot-of-ram">NOTE: It is highly recommended to run this notebook on a Jupyter server with many cores and a lot of RAM.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="visible nav section-nav flex-column">
