@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def update_frame(i):
+    rec.set_array(grainsinos[i].recons["iradon"])
+    sin = a[1].pcolormesh(grainsinos[i].sinoangles, ds.ybincens, grainsinos[i].ssino)
+    fig.suptitle("Grain " + str(i))
+    fig.canvas.draw()
+frame_slider = widgets.IntSlider(
+    value=0,
+    min=0,
+    max=len(grains) - 1,
+    step=1,
+    description='Grain:'
+)
+fig, a = plt.subplots(1,2,figsize=(10,5), constrained_layout=True)
+rec = a[0].imshow(grainsinos[0].recons["astra"], vmin=0, origin="lower")
+sin = a[1].pcolormesh(grainsinos[0].sinoangles, ds.ybincens, grainsinos[0].ssino)
+a[0].set(xlabel="<-- Sample Y", ylabel="Sample X", title="Astra MLEM Reconstruction")
+a[1].set(xlabel=r'Projection angle ($\degree$)', ylabel='dty', title='Grain sinogram')
+widgets.interact(update_frame, i=frame_slider)
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+Cell [0;32mIn[40], line 14[0m
+[1;32m      6[0m frame_slider [38;5;241m=[39m widgets[38;5;241m.[39mIntSlider(
+[1;32m      7[0m     value[38;5;241m=[39m[38;5;241m0[39m,
+[1;32m      8[0m     [38;5;28mmin[39m[38;5;241m=[39m[38;5;241m0[39m,
+[0;32m   (...)[0m
+[1;32m     11[0m     description[38;5;241m=[39m[38;5;124m'[39m[38;5;124mGrain:[39m[38;5;124m'[39m
+[1;32m     12[0m )
+[1;32m     13[0m fig, a [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;241m1[39m,[38;5;241m2[39m,figsize[38;5;241m=[39m([38;5;241m10[39m,[38;5;241m5[39m), constrained_layout[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[0;32m---> 14[0m rec [38;5;241m=[39m a[[38;5;241m0[39m][38;5;241m.[39mimshow([43mgrainsinos[49m[43m[[49m[38;5;241;43m0[39;49m[43m][49m[38;5;241;43m.[39;49m[43mrecons[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mastra[39;49m[38;5;124;43m"[39;49m[43m][49m, vmin[38;5;241m=[39m[38;5;241m0[39m, origin[38;5;241m=[39m[38;5;124m"[39m[38;5;124mlower[39m[38;5;124m"[39m)
+[1;32m     15[0m sin [38;5;241m=[39m a[[38;5;241m1[39m][38;5;241m.[39mpcolormesh(grainsinos[[38;5;241m0[39m][38;5;241m.[39msinoangles, ds[38;5;241m.[39mybincens, grainsinos[[38;5;241m0[39m][38;5;241m.[39mssino)
+[1;32m     16[0m a[[38;5;241m0[39m][38;5;241m.[39mset(xlabel[38;5;241m=[39m[38;5;124m"[39m[38;5;124m<-- Sample Y[39m[38;5;124m"[39m, ylabel[38;5;241m=[39m[38;5;124m"[39m[38;5;124mSample X[39m[38;5;124m"[39m, title[38;5;241m=[39m[38;5;124m"[39m[38;5;124mAstra MLEM Reconstruction[39m[38;5;124m"[39m)
+
+[0;31mKeyError[0m: 'astra'
+

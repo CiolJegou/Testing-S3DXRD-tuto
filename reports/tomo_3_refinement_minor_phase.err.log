@@ -1,0 +1,64 @@
+Traceback (most recent call last):
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/esrf/ljegou/.local/lib/python3.8/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+grainsinos = read_h5(ds.grainsfile, ds, phase_str)
+grains = [gs.grain for gs in grainsinos]
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mOSError[0m                                   Traceback (most recent call last)
+Cell [0;32mIn[9], line 1[0m
+[0;32m----> 1[0m grainsinos [38;5;241m=[39m [43mread_h5[49m[43m([49m[43mds[49m[38;5;241;43m.[39;49m[43mgrainsfile[49m[43m,[49m[43m [49m[43mds[49m[43m,[49m[43m [49m[43mphase_str[49m[43m)[49m
+[1;32m      2[0m grains [38;5;241m=[39m [gs[38;5;241m.[39mgrain [38;5;28;01mfor[39;00m gs [38;5;129;01min[39;00m grainsinos]
+
+File [0;32m~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/sinogram.py:485[0m, in [0;36mread_h5[0;34m(filename, ds, group_name)[0m
+[1;32m    482[0m         g [38;5;241m=[39m ImageD11[38;5;241m.[39mgrain[38;5;241m.[39mgrain[38;5;241m.[39mfrom_h5py_group(grain_group)
+[1;32m    484[0m         [38;5;66;03m# create the GrainSinogram object[39;00m
+[0;32m--> 485[0m         gs [38;5;241m=[39m [43mGrainSinogram[49m[38;5;241;43m.[39;49m[43mfrom_h5py_group[49m[43m([49m[43mgrain_group[49m[43m,[49m[43m [49m[43mds[49m[43m,[49m[43m [49m[43mg[49m[43m)[49m
+[1;32m    487[0m         gs_objects[38;5;241m.[39mappend(gs)
+[1;32m    489[0m [38;5;28;01mreturn[39;00m gs_objects
+
+File [0;32m~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/sinogram.py:391[0m, in [0;36mGrainSinogram.from_h5py_group[0;34m(cls, group, ds, grain)[0m
+[1;32m    389[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mrecons[39m[38;5;124m"[39m [38;5;129;01min[39;00m group[38;5;241m.[39mkeys():
+[1;32m    390[0m     [38;5;28;01mfor[39;00m recon_attr [38;5;129;01min[39;00m group[[38;5;124m"[39m[38;5;124mrecons[39m[38;5;124m"[39m][38;5;241m.[39mkeys():
+[0;32m--> 391[0m         recon_var [38;5;241m=[39m [43mgroup[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mrecons[39;49m[38;5;124;43m"[39;49m[43m][49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[43mrecon_attr[49m[43m)[49m[43m[[49m[43m:[49m[43m][49m
+[1;32m    392[0m         grainsino_obj[38;5;241m.[39mrecons[recon_attr] [38;5;241m=[39m recon_var
+[1;32m    394[0m [38;5;28;01mreturn[39;00m grainsino_obj
+
+File [0;32mh5py/_objects.pyx:56[0m, in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+File [0;32mh5py/_objects.pyx:57[0m, in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+File [0;32m~/.conda/envs/diffraction/lib/python3.9/site-packages/h5py/_hl/dataset.py:820[0m, in [0;36mDataset.__getitem__[0;34m(self, args, new_dtype)[0m
+[1;32m    818[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39m_fast_read_ok [38;5;129;01mand[39;00m (new_dtype [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m):
+[1;32m    819[0m     [38;5;28;01mtry[39;00m:
+[0;32m--> 820[0m         [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_fast_reader[49m[38;5;241;43m.[39;49m[43mread[49m[43m([49m[43margs[49m[43m)[49m
+[1;32m    821[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[1;32m    822[0m         [38;5;28;01mpass[39;00m  [38;5;66;03m# Fall back to Python read pathway below[39;00m
+
+File [0;32mh5py/_selector.pyx:376[0m, in [0;36mh5py._selector.Reader.read[0;34m()[0m
+
+[0;31mOSError[0m: Can't synchronously read data (addr overflow, addr = 869639300, size = 223, eoa = 869639300)
+

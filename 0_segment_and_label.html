@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Dataset creation, segmentation and peak labelling &#8212; Tutorial for scanning 3DXRD</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"04ed3bef0bf7401283f52d8346764808": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cbad09de4d184922a05c24b4c132f156": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "ef0525bb92854767a6071896e9211949": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "IntSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "Cut:", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_04ed3bef0bf7401283f52d8346764808", "max": 200, "min": 0, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_cbad09de4d184922a05c24b4c132f156", "tabbable": null, "tooltip": null, "value": 1}}, "c83c1b12497449bba629c51851f8bdd7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "915881602e2f4056a76ea1c88f685ff8": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "690bc6d589904f228db6aa0063927f11": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "IntSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "Pixels in Spot:", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_c83c1b12497449bba629c51851f8bdd7", "max": 20, "min": 0, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_915881602e2f4056a76ea1c88f685ff8", "tabbable": null, "tooltip": null, "value": 3}}, "e92115fb0f4740d2b8d22de05d5b6f32": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e50265efd2c6453dbfcda30fe600b6f7": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "778ae49b771643b28f1e1022fc267922": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "IntSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "log(howmany):", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_e92115fb0f4740d2b8d22de05d5b6f32", "max": 15, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_e50265efd2c6453dbfcda30fe600b6f7", "tabbable": null, "tooltip": null, "value": 5}}, "568a067d1f214b87a827fd8b4036960e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "85b6cab78f4e408aba95d297626bdd76": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_ef0525bb92854767a6071896e9211949", "IPY_MODEL_690bc6d589904f228db6aa0063927f11", "IPY_MODEL_778ae49b771643b28f1e1022fc267922", "IPY_MODEL_88fa66f55ec84eb7b207b755923c9295"], "layout": "IPY_MODEL_568a067d1f214b87a827fd8b4036960e", "tabbable": null, "tooltip": null}}, "e232df309f1540109eba529ba590bfd6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "88fa66f55ec84eb7b207b755923c9295": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_e232df309f1540109eba529ba590bfd6", "msg_id": "", "outputs": [{"output_type": "error", "ename": "FileNotFoundError", "evalue": "[Errno 2] No such file or directory: 'mask_with_gaps_E-08-0173.edf'", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)", "File \u001b[0;32m~/.conda/envs/diffraction/lib/python3.9/site-packages/ipywidgets/widgets/interaction.py:243\u001b[0m, in \u001b[0;36minteractive.update\u001b[0;34m(self, *args)\u001b[0m\n\u001b[1;32m    241\u001b[0m     value \u001b[38;5;241m=\u001b[39m widget\u001b[38;5;241m.\u001b[39mget_interact_value()\n\u001b[1;32m    242\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mkwargs[widget\u001b[38;5;241m.\u001b[39m_kwarg] \u001b[38;5;241m=\u001b[39m value\n\u001b[0;32m--> 243\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    244\u001b[0m show_inline_matplotlib_plots()\n\u001b[1;32m    245\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mauto_display \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mresult \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n", "File \u001b[0;32m~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/nbGui/segmenter_gui.py:85\u001b[0m, in \u001b[0;36mSegmenterGui.update_image\u001b[0;34m(self, cut, pixels_in_spot, howmany)\u001b[0m\n\u001b[1;32m     83\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39moptions[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mpixels_in_spot\u001b[39m\u001b[38;5;124m\"\u001b[39m] \u001b[38;5;241m=\u001b[39m pixels_in_spot\n\u001b[1;32m     84\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39moptions[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mhowmany\u001b[39m\u001b[38;5;124m\"\u001b[39m] \u001b[38;5;241m=\u001b[39m howmany_exp\n\u001b[0;32m---> 85\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mraw_image, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39msegmented_image, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mnblobs \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43msegment_frame\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     86\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mfig \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[1;32m     87\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mdisplay()\n", "File \u001b[0;32m~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/nbGui/segmenter_gui.py:47\u001b[0m, in \u001b[0;36mSegmenterGui.segment_frame\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m     44\u001b[0m ds \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mdset\n\u001b[1;32m     45\u001b[0m opts \u001b[38;5;241m=\u001b[39m ImageD11\u001b[38;5;241m.\u001b[39msinograms\u001b[38;5;241m.\u001b[39mlima_segmenter\u001b[38;5;241m.\u001b[39mOPTIONS \u001b[38;5;241m=\u001b[39m ImageD11\u001b[38;5;241m.\u001b[39msinograms\u001b[38;5;241m.\u001b[39mlima_segmenter\u001b[38;5;241m.\u001b[39mSegmenterOptions \\\n\u001b[1;32m     46\u001b[0m     (\u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39m\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39moptions)\n\u001b[0;32m---> 47\u001b[0m \u001b[43mopts\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43msetup\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     48\u001b[0m \u001b[38;5;28;01mwith\u001b[39;00m h5py\u001b[38;5;241m.\u001b[39mFile(ds\u001b[38;5;241m.\u001b[39mmasterfile, \u001b[38;5;124m'\u001b[39m\u001b[38;5;124mr\u001b[39m\u001b[38;5;124m'\u001b[39m) \u001b[38;5;28;01mas\u001b[39;00m hin:\n\u001b[1;32m     49\u001b[0m     frms \u001b[38;5;241m=\u001b[39m hin[\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mscan][\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mmeasurement\u001b[39m\u001b[38;5;124m'\u001b[39m][ds\u001b[38;5;241m.\u001b[39mdetector]\n", "File \u001b[0;32m~/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/lima_segmenter.py:87\u001b[0m, in \u001b[0;36mSegmenterOptions.setup\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m     82\u001b[0m \u001b[38;5;66;03m# validate input\u001b[39;00m\n\u001b[1;32m     83\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mlen\u001b[39m(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mmaskfile):\n\u001b[1;32m     84\u001b[0m     \u001b[38;5;66;03m# The mask must have:\u001b[39;00m\n\u001b[1;32m     85\u001b[0m     \u001b[38;5;66;03m#   0 == active pixel\u001b[39;00m\n\u001b[1;32m     86\u001b[0m     \u001b[38;5;66;03m#   1 == masked pixel\u001b[39;00m\n\u001b[0;32m---> 87\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mmask \u001b[38;5;241m=\u001b[39m \u001b[38;5;241m1\u001b[39m \u001b[38;5;241m-\u001b[39m \u001b[43mfabio\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mopen\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mmaskfile\u001b[49m\u001b[43m)\u001b[49m\u001b[38;5;241m.\u001b[39mdata\u001b[38;5;241m.\u001b[39mastype(np\u001b[38;5;241m.\u001b[39muint8)\n\u001b[1;32m     88\u001b[0m     \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mmask\u001b[38;5;241m.\u001b[39mmin() \u001b[38;5;241m<\u001b[39m \u001b[38;5;241m2\u001b[39m\n\u001b[1;32m     89\u001b[0m     \u001b[38;5;28;01massert\u001b[39;00m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mmask\u001b[38;5;241m.\u001b[39mmax() \u001b[38;5;241m>\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;241m0\u001b[39m\n", "File \u001b[0;32m~/.conda/envs/diffraction/lib/python3.9/site-packages/fabio/openimage.py:211\u001b[0m, in \u001b[0;36mopenimage\u001b[0;34m(filename, frame)\u001b[0m\n\u001b[1;32m    209\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    210\u001b[0m     logger\u001b[38;5;241m.\u001b[39mdebug(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mAttempting to open \u001b[39m\u001b[38;5;132;01m%s\u001b[39;00m\u001b[38;5;124m\"\u001b[39m \u001b[38;5;241m%\u001b[39m (filename))\n\u001b[0;32m--> 211\u001b[0m     obj \u001b[38;5;241m=\u001b[39m \u001b[43m_openimage\u001b[49m\u001b[43m(\u001b[49m\u001b[43mfilename\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    212\u001b[0m     logger\u001b[38;5;241m.\u001b[39mdebug(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mAttempting to read frame \u001b[39m\u001b[38;5;132;01m%s\u001b[39;00m\u001b[38;5;124m from \u001b[39m\u001b[38;5;132;01m%s\u001b[39;00m\u001b[38;5;124m with reader \u001b[39m\u001b[38;5;132;01m%s\u001b[39;00m\u001b[38;5;124m\"\u001b[39m \u001b[38;5;241m%\u001b[39m (frame, filename, obj\u001b[38;5;241m.\u001b[39mclassname))\n\u001b[1;32m    213\u001b[0m     obj \u001b[38;5;241m=\u001b[39m obj\u001b[38;5;241m.\u001b[39mread(obj\u001b[38;5;241m.\u001b[39mfilename, frame)\n", "File \u001b[0;32m~/.conda/envs/diffraction/lib/python3.9/site-packages/fabio/openimage.py:256\u001b[0m, in \u001b[0;36m_openimage\u001b[0;34m(filename)\u001b[0m\n\u001b[1;32m    254\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m    255\u001b[0m     imo \u001b[38;5;241m=\u001b[39m FabioImage()\n\u001b[0;32m--> 256\u001b[0m     \u001b[38;5;28;01mwith\u001b[39;00m \u001b[43mimo\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_open\u001b[49m\u001b[43m(\u001b[49m\u001b[43mactual_filename\u001b[49m\u001b[43m)\u001b[49m \u001b[38;5;28;01mas\u001b[39;00m f:\n\u001b[1;32m    257\u001b[0m         magic_bytes \u001b[38;5;241m=\u001b[39m f\u001b[38;5;241m.\u001b[39mread(\u001b[38;5;241m18\u001b[39m)\n\u001b[1;32m    258\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mIOError\u001b[39;00m:\n", "File \u001b[0;32m~/.conda/envs/diffraction/lib/python3.9/site-packages/fabio/fabioimage.py:790\u001b[0m, in \u001b[0;36mFabioImage._open\u001b[0;34m(self, fname, mode)\u001b[0m\n\u001b[1;32m    780\u001b[0m     fileObject \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_compressed_stream(fname,\n\u001b[1;32m    781\u001b[0m                                          fabioutils\u001b[38;5;241m.\u001b[39mCOMPRESSORS[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m.bz2\u001b[39m\u001b[38;5;124m'\u001b[39m],\n\u001b[1;32m    782\u001b[0m                                          fabioutils\u001b[38;5;241m.\u001b[39mBZ2File,\n\u001b[1;32m    783\u001b[0m                                          mode)\n\u001b[1;32m    784\u001b[0m \u001b[38;5;66;03m#\u001b[39;00m\n\u001b[1;32m    785\u001b[0m \u001b[38;5;66;03m# Here we return the file even though it may be bzipped or gzipped\u001b[39;00m\n\u001b[1;32m    786\u001b[0m \u001b[38;5;66;03m# but named incorrectly...\u001b[39;00m\n\u001b[1;32m    787\u001b[0m \u001b[38;5;66;03m#\u001b[39;00m\n\u001b[1;32m    788\u001b[0m \u001b[38;5;66;03m# FIXME - should we fix that or complain about the daft naming?\u001b[39;00m\n\u001b[1;32m    789\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[0;32m--> 790\u001b[0m     fileObject \u001b[38;5;241m=\u001b[39m \u001b[43mfabioutils\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mFile\u001b[49m\u001b[43m(\u001b[49m\u001b[43mfname\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmode\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    791\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mname\u001b[39m\u001b[38;5;124m\"\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m \u001b[38;5;28mdir\u001b[39m(fileObject):\n\u001b[1;32m    792\u001b[0m     fileObject\u001b[38;5;241m.\u001b[39mname \u001b[38;5;241m=\u001b[39m fname\n", "File \u001b[0;32m~/.conda/envs/diffraction/lib/python3.9/site-packages/fabio/fabioutils.py:445\u001b[0m, in \u001b[0;36mFile.__init__\u001b[0;34m(self, name, mode, temporary)\u001b[0m\n\u001b[1;32m    424\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[38;5;21m__init__\u001b[39m(\u001b[38;5;28mself\u001b[39m, name, mode\u001b[38;5;241m=\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mrb\u001b[39m\u001b[38;5;124m\"\u001b[39m, temporary\u001b[38;5;241m=\u001b[39m\u001b[38;5;28;01mFalse\u001b[39;00m):\n\u001b[1;32m    425\u001b[0m \u001b[38;5;250m    \u001b[39m\u001b[38;5;124;03m\"\"\"file(name[, mode[, buffering]]) -> file object\u001b[39;00m\n\u001b[1;32m    426\u001b[0m \n\u001b[1;32m    427\u001b[0m \u001b[38;5;124;03m    Open a file.  The mode can be 'r', 'w' or 'a' for reading (default),\u001b[39;00m\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    443\u001b[0m \u001b[38;5;124;03m    :param temporary: if True, destroy file at close.\u001b[39;00m\n\u001b[1;32m    444\u001b[0m \u001b[38;5;124;03m    \"\"\"\u001b[39;00m\n\u001b[0;32m--> 445\u001b[0m     \u001b[43mFileIO\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[38;5;21;43m__init__\u001b[39;49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mname\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmode\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    446\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mlock \u001b[38;5;241m=\u001b[39m threading\u001b[38;5;241m.\u001b[39mSemaphore()\n\u001b[1;32m    447\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m__size \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m\n", "\u001b[0;31mFileNotFoundError\u001b[0m: [Errno 2] No such file or directory: 'mask_with_gaps_E-08-0173.edf'"]}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0_segment_and_label';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tomographic reconstruction (major phase)" href="Tomographic_reconstruction_Major_Phase.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Tutorial for scanning 3DXRD - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Tutorial for scanning 3DXRD - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dataset creation, segmentation and peak labelling</a></li>
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_Major_Phase.html">Tomographic reconstruction (major phase)</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index.html">Tomographic indexing notebook</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map.html">Tomographic mapping notebook</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement.html">Tomographic refinement notebook</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_visualise.html">Point-by-point refined map visualisation notebook</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Tomographic_reconstruction_minor_phase.html">Tomographic reconstruction (minor phase)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="tomo_1_index_minor_phase.html">Tomographic indexing notebook, with optimizations for minor phases</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_2_map_minor_phase.html">Tomographic mapping notebook, with optimizations for minor phases</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="tomo_3_refinement_minor_phase.html">Tomographic refinement notebook</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="4_visualise_minor_phase.html">Point-by-point refined map visualisation notebook</a></li>
+
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5_combine_phases.html">Notebook to combine TensorMap phases</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F0_segment_and_label.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/0_segment_and_label.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dataset creation, segmentation and peak labelling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dataset creation, segmentation and peak labelling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#s3dxrd-processing-first-step">S3DXRD processing first step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-demo-to-see-how-a-frame-is-segmented-for-one-dataset">Example demo to see how a frame is segmented for one dataset:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-file-creation">Sparse file creation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-labeling">Peak labeling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#intensity-normalisation">Intensity normalisation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#finished-segmenting">Finished segmenting!</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dataset-creation-segmentation-and-peak-labelling">
+<h1>Dataset creation, segmentation and peak labelling<a class="headerlink" href="#dataset-creation-segmentation-and-peak-labelling" title="Permalink to this heading">#</a></h1>
+<section id="s3dxrd-processing-first-step">
+<h2>S3DXRD processing first step<a class="headerlink" href="#s3dxrd-processing-first-step" title="Permalink to this heading">#</a></h2>
+<p>During the experiment, we collected a lot of pictures with the detector. These pictures are mainly empty except for diffraction peaks. The first step consists in segmenting these images to keep only the peaks, their position on the detector and their intensities.</p>
+<p>Written by James Ball, Haixing Fang and Jon Wright</p>
+<p>Last updated: 21/02/2025</p>
+<p>Outside ESRF: download <a class="reference external" href="https://github.com/FABLE-3DXRD/ImageD11/tree/master/ImageD11/nbGui/install_ImageD11_from_git.py">install_ImageD11_from_git.py</a>, and update the path in the next cell:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exec</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/data/id11/nanoscope/install_ImageD11_from_git.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>The notebooks are written with all the parameters in the first cell.
+We will see how to tune these parameters along the notebook.</p>
+<p>For now, change :</p>
+<ol class="arabic simple">
+<li><p>the dataset name (<em>dset_path</em>)</p></li>
+<li><p>the major phase name (<em>major_phase_strs</em>), this is a list [] because you may want to filter the major phase and other minor phases you already indexed</p></li>
+<li><p>the minor phase name (<em>minor_phase_str</em>)</p></li>
+</ol>
+<div class="cell tag_parameters docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this cell is tagged with &#39;parameters&#39;</span>
+<span class="c1"># to view the tag, select the cell, then find the settings gear icon (right or left sidebar) and look for Cell Tags</span>
+
+<span class="n">PYTHONPATH</span> <span class="o">=</span> <span class="n">setup_ImageD11_from_git</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span><span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Tutorial&#39;</span><span class="p">,</span> <span class="s1">&#39;SCRIPTS&#39;</span><span class="p">),</span> <span class="s1">&#39;ImageD11&#39;</span> <span class="p">)</span> <span class="c1"># ( os.path.join( os.environ[&#39;HOME&#39;],&#39;Code&#39;), &#39;ImageD11_git&#39; )</span>
+
+<span class="c1"># Experts : update these files for your detector if you need to</span>
+<span class="n">maskfile</span> <span class="o">=</span> <span class="s2">&quot;mask_with_gaps_E-08-0173.edf&quot;</span>
+<span class="n">e2dxfile</span> <span class="o">=</span> <span class="s2">&quot;e2dx_E-08-0144_20240205.edf&quot;</span>
+<span class="n">e2dyfile</span> <span class="o">=</span> <span class="s2">&quot;e2dy_E-08-0144_20240205.edf&quot;</span>
+<span class="n">detector</span> <span class="o">=</span> <span class="s1">&#39;eiger&#39;</span>
+<span class="n">omegamotor</span> <span class="o">=</span> <span class="s1">&#39;rot_center&#39;</span>
+<span class="n">dtymotor</span> <span class="o">=</span> <span class="s1">&#39;dty&#39;</span>
+
+<span class="c1"># Default segmentation options</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;cut&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;pixels_in_spot&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;howmany&#39;</span> <span class="p">:</span> <span class="mi">100000</span> <span class="p">}</span>
+<span class="n">normalise_intensities_to_monitor</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">monitor_name</span> <span class="o">=</span> <span class="s1">&#39;fpico6&#39;</span>
+
+<span class="c1"># EXPERTS: These can be provided as papermill parameters. Users, leave these as None for now...</span>
+<span class="n">dataroot</span> <span class="o">=</span> <span class="s1">&#39;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/RAW_DATA&#39;</span>
+<span class="n">analysisroot</span> <span class="o">=</span> <span class="s1">&#39;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/PROCESSED_DATA/20250626_LJ&#39;</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="s2">&quot;FeAu_0p5_tR_nscope&quot;</span> 
+<span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;top_200um&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Setting path via: 
+sys.path.insert(0, /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11 )
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Running from: /home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/__init__.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import needed packages</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.sinograms.dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.sinograms.lima_segmenter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.sinograms.assemble_label</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.sinograms.properties</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ImageD11.nbGui.nb_utils</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ImageD11.nbGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">segmenter_gui</span>
+
+<span class="c1"># %matplotlib ipympl</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Set up the file paths. Edit this if you are not at ESRF or not using the latest data policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">dataroot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">dataroot</span><span class="p">,</span> <span class="n">analysisroot</span> <span class="o">=</span> <span class="n">segmenter_gui</span><span class="o">.</span><span class="n">guess_ESRF_paths</span><span class="p">()</span> 
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataroot</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please fix in the dataroot and analysisroot folder names above!!&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dataroot =&#39;</span><span class="p">,</span><span class="nb">repr</span><span class="p">(</span><span class="n">dataroot</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;analysisroot =&#39;</span><span class="p">,</span><span class="nb">repr</span><span class="p">(</span><span class="n">analysisroot</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dataroot = &#39;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/RAW_DATA&#39;
+analysisroot = &#39;/data/id11/inhouse2/test_data_3DXRD/S3DXRD/FeAu/PROCESSED_DATA/20250626_LJ&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the samples available:</span>
+<span class="n">segmenter_gui</span><span class="o">.</span><span class="n">printsamples</span><span class="p">(</span><span class="n">dataroot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Samples:
+	 .ipynb_checkpoints
+	FeAu_0p5_tR_nscope
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># USER: Decide which sample</span>
+<span class="k">if</span> <span class="n">sample</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="s1">&#39;FeAu_0p5_tR_nscope&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the datasets for that sample:</span>
+<span class="n">segmenter_gui</span><span class="o">.</span><span class="n">printdatasets</span><span class="p">(</span> <span class="n">dataroot</span><span class="p">,</span> <span class="n">sample</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datsets:
+	 top_200um
+	top_250um
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># USER: Decide which dataset</span>
+<span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;top_200um&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-demo-to-see-how-a-frame-is-segmented-for-one-dataset">
+<h2>Example demo to see how a frame is segmented for one dataset:<a class="headerlink" href="#example-demo-to-see-how-a-frame-is-segmented-for-one-dataset" title="Permalink to this heading">#</a></h2>
+<p>Create ImageD11 dataset object</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ImageD11</span><span class="o">.</span><span class="n">sinograms</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">DataSet</span><span class="p">(</span><span class="n">dataroot</span><span class="o">=</span><span class="n">dataroot</span><span class="p">,</span>
+                                        <span class="n">analysisroot</span><span class="o">=</span><span class="n">analysisroot</span><span class="p">,</span>
+                                        <span class="n">sample</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span>
+                                        <span class="n">dset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+                                        <span class="n">detector</span><span class="o">=</span><span class="n">detector</span><span class="p">,</span>
+                                        <span class="n">omegamotor</span><span class="o">=</span><span class="n">omegamotor</span><span class="p">,</span>
+                                        <span class="n">dtymotor</span><span class="o">=</span><span class="n">dtymotor</span>
+                                       <span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">import_all</span><span class="p">()</span>  <span class="c1"># Can use scans = [f&#39;{scan}.1&#39; for scan in range(1,102)] )</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">maskfile</span> <span class="o">=</span> <span class="n">maskfile</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">e2dxfile</span> <span class="o">=</span> <span class="n">e2dxfile</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">e2dyfile</span> <span class="o">=</span> <span class="n">e2dyfile</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>You should now see two pictures, n the left the raw image, and on the right the segmented image.
+By zooming in the picture, you can see the spots and the background noise more clearly.</p>
+<p>You can change <code class="docutils literal notranslate"><span class="pre">frame</span></code> to select a different frame if you are unlucky and don’t see any spot on the current frame.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ui</span> <span class="o">=</span> <span class="n">segmenter_gui</span><span class="o">.</span><span class="n">SegmenterGui</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="mi">488</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using frame 488 from scan 138.1
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "85b6cab78f4e408aba95d297626bdd76"}</script></div>
+</div>
+<p>Make sure the printed options below are the one you selected</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">getopts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>options =  {&#39;cut&#39;: 1, &#39;pixels_in_spot&#39;: 3, &#39;howmany&#39;: 100000}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sparse-file-creation">
+<h1>Sparse file creation<a class="headerlink" href="#sparse-file-creation" title="Permalink to this heading">#</a></h1>
+<p>Create a batch file to send to the ESRF SLURM cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sbat = ImageD11.sinograms.lima_segmenter.setup(ds.dsfile, **ui.getopts(), pythonpath=PYTHONPATH)</span>
+<span class="c1"># if sbat is None:</span>
+<span class="c1">#     raise ValueError(&quot;This scan has already been segmented!&quot;)</span>
+<span class="c1"># print(sbat)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># utils.slurm_submit_and_wait(sbat, 60)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="peak-labeling">
+<h1>Peak labeling<a class="headerlink" href="#peak-labeling" title="Permalink to this heading">#</a></h1>
+<p>Once all images are segmented :</p>
+<ol class="arabic simple">
+<li><p>every peak is labeled,</p></li>
+<li><p>a peak table is generated.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ImageD11.sinograms.assemble_label.main(ds.dsfile)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ImageD11.sinograms.properties.main(ds.dsfile, options={&#39;algorithm&#39;: &#39;lmlabel&#39;, &#39;wtmax&#39;: 70000, &#39;save_overlaps&#39;: False})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="intensity-normalisation">
+<h1>Intensity normalisation<a class="headerlink" href="#intensity-normalisation" title="Permalink to this heading">#</a></h1>
+<p>At the ESRF, there is a refill of electrons every hour. The intensity of the signal may change for during long scans
+You can optionally normalise your observed intensities to a monitor column, such as a pico, if you had one in the beam path.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">im</span><span class="p">,</span> <span class="n">om_edges</span><span class="p">,</span> <span class="n">dty_edges</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sinohist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;sum_intensity&#39;</span><span class="p">]),</span> <span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;omega&#39;</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;dty&#39;</span><span class="p">],</span> <span class="n">return_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">om_edges</span><span class="p">,</span> <span class="n">dty_edges</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\omega~(\degree)$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Un-normalised sinogram of all 2D peaks&#39;</span><span class="p">)</span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;log(intensity)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a397ca160f5df9973a87e0e4a6024310f5cbe9d99ce101e9d63e4a82f24d9b19.png" src="_images/a397ca160f5df9973a87e0e4a6024310f5cbe9d99ce101e9d63e4a82f24d9b19.png" />
+</div>
+</div>
+<p>Let’s look at an image of the monitor signal across (dty, omega)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">normalise_intensities_to_monitor</span><span class="p">:</span>
+    <span class="n">monitor_per_frame</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="n">monitor_name</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+    <span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">om_edges</span><span class="p">,</span> <span class="n">dty_edges</span><span class="p">,</span> <span class="n">monitor_per_frame</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\omega~(\degree)$&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Monitor column&#39;</span><span class="p">)</span>
+    <span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Monitor&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ddc6aa25f6647ca1aed7d9f324c27c9379930e5f9cbb021b75b5e0d4f8bcff2f.png" src="_images/ddc6aa25f6647ca1aed7d9f324c27c9379930e5f9cbb021b75b5e0d4f8bcff2f.png" />
+</div>
+</div>
+<p>To normalise to a monitor signal, we need to choose a “reference” monitor value that we scale to.
+A good choice may be <code class="docutils literal notranslate"><span class="pre">np.mean(monitor_per_frame)</span></code></p>
+<p>We then compute <code class="docutils literal notranslate"><span class="pre">scale_factor_per_frame</span> <span class="pre">=</span> <span class="pre">np.mean(monitor_per_frame)</span> <span class="pre">/</span> <span class="pre">monitor_per_frame</span></code><br />
+We then multiply the observed intensities by <code class="docutils literal notranslate"><span class="pre">scale_factor_per_frame</span></code></p>
+<p>You can choose which function to use to generate the “reference” monitor value, for example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ds.set_monitor(monitor_name='fpico6',</span> <span class="pre">ref_value_func=np.mean)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">normalise_intensities_to_monitor</span><span class="p">:</span>
+    <span class="c1"># ensure no monitor currently set</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">monitor</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">monitor_ref</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">reset_peaks_cache</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+    <span class="n">im</span><span class="p">,</span> <span class="n">om_edges</span><span class="p">,</span> <span class="n">dty_edges</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sinohist</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;sum_intensity&#39;</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;omega&#39;</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;dty&#39;</span><span class="p">],</span> <span class="n">return_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dty_edges</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;before scaling&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># here we set the monitor</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">set_monitor</span><span class="p">(</span><span class="n">monitor_name</span><span class="p">,</span> <span class="n">ref_value_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+
+    <span class="n">im</span><span class="p">,</span> <span class="n">om_edges</span><span class="p">,</span> <span class="n">dty_edges</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">sinohist</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;sum_intensity&#39;</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;omega&#39;</span><span class="p">],</span> <span class="n">ds</span><span class="o">.</span><span class="n">pk2d</span><span class="p">[</span><span class="s1">&#39;dty&#39;</span><span class="p">],</span> <span class="n">return_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dty_edges</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;after scaling&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;dty&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;intensity&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Before vs after setting monitor&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="c1"># save the choice of monitor to disk</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/dataset.py:672: UserWarning: Clearing cached pk2d
+  warnings.warn(&quot;Clearing cached pk2d&quot;)
+/home/esrf/ljegou/Code/Tutorial/SCRIPTS/ImageD11/ImageD11/sinograms/dataset.py:684: UserWarning: I found an existing 4D colfile on disk - you probably want to remake this with ds.get_cf_4d(ignore_existing=True)
+  warnings.warn(&quot;I found an existing 4D colfile on disk - you probably want to remake this with ds.get_cf_4d(ignore_existing=True)&quot;)
+</pre></div>
+</div>
+<img alt="_images/b5ce6afd7dc08c0ab61f1d03c3b25bfaf3c5e145e9e746a5c05bbaf1ba98e8e3.png" src="_images/b5ce6afd7dc08c0ab61f1d03c3b25bfaf3c5e145e9e746a5c05bbaf1ba98e8e3.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="finished-segmenting">
+<h1>Finished segmenting!<a class="headerlink" href="#finished-segmenting" title="Permalink to this heading">#</a></h1>
+<p>You can now choose between two different indexing routes: tomographic (tomo) and point-by-point (pbp).<br />
+Tomo gives you better grain shapes, but can’t handle highly deformed samples.<br />
+Point-by-point can only give you convex grain shapes (less accurate) but can handle high levels of deformation.<br />
+Both techniques will join back together during the strain refinement stage (notebook 3).<br />
+Therefore notebooks 4 and onwards should work from either the tomo or pbp route.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "envname"
+        },
+        kernelOptions: {
+            name: "envname",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'envname'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tomographic_reconstruction_Major_Phase.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tomographic reconstruction (major phase)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dataset creation, segmentation and peak labelling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#s3dxrd-processing-first-step">S3DXRD processing first step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-demo-to-see-how-a-frame-is-segmented-for-one-dataset">Example demo to see how a frame is segmented for one dataset:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-file-creation">Sparse file creation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-labeling">Peak labeling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#intensity-normalisation">Intensity normalisation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#finished-segmenting">Finished segmenting!</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jegou Loïc
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
